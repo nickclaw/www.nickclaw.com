@@ -43,6 +43,10 @@ $iconMargin: 20px;
 			background-size: contain;
 		}
 	}
+
+	&.hidden {
+		opacity: 0;
+	}
 }
 
 .nav.vertical {
@@ -81,7 +85,6 @@ $iconMargin: 20px;
 
 	&.hidden {
 		right: -100px;
-		opacity: 0;
 	}
 }
 
@@ -118,6 +121,10 @@ $iconMargin: 20px;
 				background-image: url(../image/arrow_right.png);
 			}
 		}
+	}
+
+	&.hidden {
+		bottom: -100px;
 	}
 }
 

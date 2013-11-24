@@ -24,51 +24,78 @@ h3 {
 	font-size: 20px;
 }
 
-.column {
-	position: relative;
-	width: 43%;
-	height: 100%;
-	float:left;
-	padding-left: 30px;
-}
-
-.column:first-child {
-	padding-left: 0px;
-}
-
-.column.full {
-	width: 50%;
-	padding: 0px !important;
-}
-
-p {
-	text-align: justify;
-	text-indent: 25px;
-	font-size: 12pt;
-	line-height: 16pt;
-	opacity: .7;
-}
-
-#nav-directions {
-	text-align: center;	
-	
-	img {
-		display:inline-block;
-		opacity: .5;
-		-webkit-transition: opacity .3s ease;
-
-		&:hover {
-			opacity: .8;
-		}
+.sub .content {	
+	padding: {
+		left: 40px;
+		right: 110px;
 	}
 
-	#mouse, #keys {
-		height: 20%;
-		max-width: 50%;
+	p {
+		text-align: justify;
+		text-indent: 25px;
+		font-size: 12pt;
+		line-height: 17pt;
+		opacity: .7;
 	}
 
 	#downArrow {
-		height: 50%;
+		max-width: 60%;
+		max-height: 60%;
+
+		margin: {
+			left: auto;
+			right: auto;
+		}
+	}
+}
+
+.column {
+	width: 50%;
+	height: 100%;
+	float: left;
+
+	&:first-child {
+		padding-right: 10px;
+	}
+
+	&:last-child {
+		padding-left: 10px;
+	}
+}
+
+.arrowRightContainer {
+	display: table-cell;
+	vertical-align:middle;
+	text-align: right;
+
+	.arrowRight {
 		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+	}
+}
+
+.arrow {
+	-webkit-transition: opacity .3s ease, bottom .1s ease, right .1s ease;
+	opacity: .4;
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+	position: relative;
+	display: block;
+	cursor: pointer;
+
+	&:hover {
+		opacity: .5;
+	}
+
+	&.down:hover {
+		bottom: -3px;
+	}
+
+	&.right:hover {
+		right: -3px;
 	}
 }
