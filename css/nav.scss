@@ -1,0 +1,126 @@
+$iconMargin: 20px;
+
+.nav {
+	
+	-webkit-transition: opacity .3s ease, right .3s ease, bottom .3s ease;
+
+	.indicators {
+
+		* {
+			width: 36px;
+			height: 36px;
+			cursor: pointer;
+			opacity: .5;
+			-webkit-transition: opacity .2s ease, background-color .3s ease;
+		}
+
+		*[data-title]:before {
+			content: attr(data-title);
+			display: block;
+			position: relative;
+			overflow: visible;
+			color: rgba(255,255,255,0);
+			-webkit-transition: color .5s ease;
+			width: 100px;
+			font-size: 14pt;
+		}
+
+		*[data-title]:hover:before {
+			color: rgba(255,255,255,.5);
+		}
+
+		.indicator {
+			background-color: transparent;
+			border: solid white 4px;
+			border-radius: 25px;
+
+			&.active {
+				background-color: white;
+			}
+		}
+
+		.control {
+			background-size: contain;
+		}
+	}
+}
+
+.nav.vertical {
+	display: table;
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	height: 100%;
+
+	.indicators {
+		display: table-cell;
+		vertical-align: middle;
+
+		* {
+			margin: $iconMargin * 2;
+		}
+
+		*[data-title]:before {
+			text-align: right;
+			right: 110px;
+		}
+
+		*[data-title]:hover:before {
+			
+		}
+
+		.control {
+			&.first {
+				background-image: url(../image/arrow_up.png);
+			}
+			&.last {
+				background-image: url(../image/arrow_down.png);
+			}
+		}
+	}
+
+	&.hidden {
+		right: -100px;
+		opacity: 0;
+	}
+}
+
+.nav.horizontal {
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+
+	text-align: center;
+
+	.indicators {
+
+		* {
+			margin: $iconMargin;
+			display: inline-block;
+		}
+
+		*[data-title]:before {
+			/*text-align: left;
+			bottom: 50px;
+			position: absolute;*/
+		}
+
+		*[data-title]:hover:before {
+			
+		}
+
+		.control {
+			&.first {
+				background-image: url(../image/arrow_left.png);
+			}
+			&.last {
+				background-image: url(../image/arrow_right.png);
+			}
+		}
+	}
+}
+
+.page, .vertical {
+	position: relative;
+}

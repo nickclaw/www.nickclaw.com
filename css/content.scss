@@ -1,0 +1,74 @@
+@font-face {
+	font-family: OpenSans;
+	src: url(../font/OpenSans-Regular.ttf);
+}
+
+* {
+	font-family: OpenSans, sans-serif;
+}
+
+h1, h2, h3 {
+	color: transparent;
+	text-shadow: 0px 0px 5px rgba(150, 150, 150, 0.3), 0 0 0 rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+	font-size: 80px;
+}
+
+h2 {
+	font-size: 40px;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+.column {
+	position: relative;
+	width: 43%;
+	height: 100%;
+	float:left;
+	padding-left: 30px;
+}
+
+.column:first-child {
+	padding-left: 0px;
+}
+
+.column.full {
+	width: 50%;
+	padding: 0px !important;
+}
+
+p {
+	text-align: justify;
+	text-indent: 25px;
+	font-size: 12pt;
+	line-height: 16pt;
+	opacity: .7;
+}
+
+#nav-directions {
+	text-align: center;	
+	
+	img {
+		display:inline-block;
+		opacity: .5;
+		-webkit-transition: opacity .3s ease;
+
+		&:hover {
+			opacity: .8;
+		}
+	}
+
+	#mouse, #keys {
+		height: 20%;
+		max-width: 50%;
+	}
+
+	#downArrow {
+		height: 50%;
+		max-width: 100%;
+	}
+}

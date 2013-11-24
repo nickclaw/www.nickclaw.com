@@ -1,0 +1,69 @@
+@import "nav.scss";
+@import "content.scss";
+
+$leftOffset: 100px;
+$topOffset: 150px;
+
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+body, html, #container {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	h1 {
+		position:absolute;
+		top: 30px;
+		left: $leftOffset - 20px;
+	}
+
+	.content {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.page {
+		width: 100%;
+		height: 100%;
+	}
+
+	.horizontal {
+		white-space: nowrap;
+
+		* {
+			white-space: normal;
+		}
+
+		.page {
+			display: inline-block;
+			padding-left: $leftOffset;
+		}
+	}
+}
+
+
+// assign background colors
+.page.main {
+	padding-top: $topOffset;
+
+	&:nth-child(3n) {
+		background-image: url('../image/noiseblue.png');
+	}
+	&:nth-child(3n+1) {
+		background-image: url('../image/noiseyellow.png');
+	}
+	&:nth-child(3n+2) {
+		background-image: url('../image/noisepink.png');
+	}
+}

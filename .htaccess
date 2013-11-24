@@ -1,0 +1,11 @@
+# Enable rewrite engine 
+
+Options +FollowSymLinks 
+
+RewriteEngine On 
+
+ 
+
+# Redirect internally all URIs to /index.php 
+
+RewriteRule ^(projects|about|contact) /index.html [L]
