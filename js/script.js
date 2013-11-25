@@ -242,42 +242,57 @@ $(window).ready(function() {
 	var oldDy = null;
 	var timeout = null;
 	var canScroll = true;
+	var touch = {
+		'x': 0,
+		'y': 0
+	};
+
+	$('body').on('touchstart', function(evt) {
+		touch.x = evt.originalEvent.touches[0].screenX;
+		touch.y = evt.originalEvent.touches[0].screenY;
+	});
 
 	// every time there's a scroll event..
-	$('body').on('scroll wheel mousewheel drag', function(evt) {
+	$('body').on('scroll wheel mousewheel drag touchmove', function(evt) {
 		// stop event
 		evt.preventDefault();
 		evt.stopPropagation();
-
-
-		var dy = evt.originalEvent.deltaY || evt.originalEvent.wheelDeltaY; // change in y
+		var dy, dx;
+		if (evt.originalEvent.touches !== undefined) {
+			dy = touch.y - evt.originalEvent.touches[0].screenY;
+			dx = touch.x - evt.originalEvent.touches[0].screenX
+			touch.x = evt.originalEvent.touches[0].screenX;
+			touch.y = evt.originalEvent.touches[0].screenY;
+		} else {
+			dy = evt.originalEvent.deltaY || evt.originalEvent.wheelDeltaY; // change in y
+			dx = evt.originalEvent.deltaX || evt.originalEvent.wheelDeltaX; // change in x
+		}
+		
 		var absDy = Math.abs(dy); // absolute change in y
+		var absDx = Math.abs(dx); // absolute change in x
 
 		if (oldDy) {
 			var ay = dy - oldDy; // acceleration in y
 		}
-		oldDy = dy;
-
-		var dx = evt.originalEvent.deltaX || evt.originalEvent.wheelDeltaX; // change in x
-		var absDx = Math.abs(dx); // absolute change in x
-
 		if (oldDx) {
 			var ax = dx - oldDx; // acceleration in x
 		}
+
+		oldDy = dy;
 		oldDx = dx;
 
 		// is accelerating
 		if ( ( ay && (dy > 0 && ay > 0) || (dy < 0 && ay < 0) ) ||
 			 ( ax && (dx > 0 && ax > 0) || (dx < 0 && ax < 0) ) ) {
 
-			if (canScroll && absDy > absDx && absDy > 50) {
+			if (canScroll && absDy > absDx && absDy > 5) {
 				canScroll = false;
 				if (dy < 0) {
 					pageUp();
 				} else {
 					pageDown();
 				}
-			} else if (canScroll && absDx > absDy && absDx > 25) {
+			} else if (canScroll && absDx > absDy && absDx > 5) {
 				canScroll = false;
 				if (dx < 0) {
 					pageLeft();

@@ -7,7 +7,7 @@
 	font-family: OpenSans, sans-serif;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
 	color: transparent;
 	text-shadow: 0px 0px 5px rgba(150, 150, 150, 0.3), 0 0 0 rgba(0, 0, 0, 0.4);
 }
@@ -26,7 +26,7 @@ h3 {
 
 .sub .content {	
 	padding: {
-		left: 40px;
+		left: 0px;
 		right: 110px;
 	}
 
@@ -35,7 +35,7 @@ h3 {
 		text-indent: 25px;
 		font-size: 12pt;
 		line-height: 17pt;
-		opacity: .7;
+		margin-bottom: 17pt;
 	}
 
 	#downArrow {
@@ -92,10 +92,10 @@ h3 {
 	}
 
 	&.down:hover {
-		bottom: -3px;
+		//bottom: -3px;
 	}
 
 	&.right:hover {
-		right: -3px;
+		//right: -3px;
 	}
 }

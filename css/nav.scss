@@ -1,7 +1,7 @@
 $iconMargin: 20px;
 
 .nav {
-	
+	-webkit-user-select: none;
 	-webkit-transition: opacity .3s ease, right .3s ease, bottom .3s ease;
 
 	.indicators {
@@ -126,6 +126,11 @@ $iconMargin: 20px;
 	&.hidden {
 		bottom: -100px;
 	}
+}
+
+.indicator.active + .control.last {
+	opacity: 0;
+	cursor: default;
 }
 
 .page, .vertical {
