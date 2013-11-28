@@ -172,7 +172,7 @@ function pageUp() {
 	if (pageExists(current.main.index - 1)) {
 		goToPage(current.main.index - 1);
 	} else {
-		// bounce
+		bounceUp();
 	}
 }
 
@@ -183,7 +183,7 @@ function pageDown() {
 	if (pageExists(current.main.index + 1)) {
 		goToPage(current.main.index + 1);
 	} else {
-		// bounce
+		bounceDown();
 	}
 }
 
@@ -209,6 +209,32 @@ function pageRight() {
 	}
 }
 
+function bounceUp() {
+	var container = $('#container');
+	container.animate({'scrollTop': container.scrollTop() - 70 }, {
+		'queue': false,
+		'easing': 'swing',
+		'duration': 100,
+		'complete': function() {
+			var current = getCurrentPage();
+			scrollTo(current.main.id, current.sub.id);
+		}
+	});
+}
+
+function bounceDown() {
+	var container = $('#container');
+	container.animate({'scrollTop': container.scrollTop() + 70 }, {
+		'queue': false,
+		'easing': 'swing',
+		'duration': 100,
+		'complete': function() {
+			var current = getCurrentPage();
+			scrollTo(current.main.id, current.sub.id);
+		}
+	});
+}
+
 function scrollTo(mainId, subId, mainSettings, subSettings) {
 	var container = $('#container');
 	container.animate({'scrollTop': container.scrollTop() + $(mainId).offset().top }, mainSettings?mainSettings:{
@@ -218,7 +244,8 @@ function scrollTo(mainId, subId, mainSettings, subSettings) {
 		'complete': function() {
 			var otherSubs = $('.main:not('+mainId+') .container');
 			otherSubs.animate({'scrollLeft': 0 }, {
-				'duration': 0
+				'duration': 0,
+				'queue': false,
 			});
 		}
 	});
