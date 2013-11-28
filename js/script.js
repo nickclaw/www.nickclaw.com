@@ -1,3 +1,5 @@
+var id = sid = '';
+
 
 function createVerticalNav(data) {
 	var inner = $(document.createElement('div'))
@@ -109,7 +111,6 @@ function getCurrentUrl() {
 	if (current.sub.url) {
 		url+="/"+current.sub.url;
 	}
-	console.log(url);
 	return url;
 }
 
@@ -166,6 +167,7 @@ function checkPages() {
 
 function pageUp() {
 	var current = getCurrentPage();
+	id = current.main.id;
 
 	if (pageExists(current.main.index - 1)) {
 		goToPage(current.main.index - 1);
@@ -176,6 +178,7 @@ function pageUp() {
 
 function pageDown() {
 	var current = getCurrentPage();
+	id = current.main.id;
 
 	if (pageExists(current.main.index + 1)) {
 		goToPage(current.main.index + 1);
@@ -186,6 +189,7 @@ function pageDown() {
 
 function pageLeft() {
 	var current = getCurrentPage();
+	sid = current.sub.id;
 
 	if (pageExists(current.main.index, current.sub.index - 1)) {
 		goToPage(current.main.index, current.sub.index - 1);
@@ -196,6 +200,7 @@ function pageLeft() {
 
 function pageRight() {
 	var current = getCurrentPage();
+	sid = current.sub.id;
 
 	if (pageExists(current.main.index, current.sub.index + 1)) {
 		goToPage(current.main.index, current.sub.index + 1);
@@ -238,81 +243,50 @@ $(window).ready(function() {
 		'duration': 0
 	});
 
-	var oldDx = null;
-	var oldDy = null;
-	var timeout = null;
-	var canScroll = true;
-	var touch = {
-		'x': 0,
-		'y': 0
-	};
-
-	$('body').on('touchstart', function(evt) {
-		touch.x = evt.originalEvent.touches[0].screenX;
-		touch.y = evt.originalEvent.touches[0].screenY;
-	});
+	var mainSelector = pages.children.map(function(child){return child.id;}).join(', ');
 
 	// every time there's a scroll event..
-	$('body').on('scroll wheel mousewheel drag touchmove', function(evt) {
+	$(mainSelector).on('mousewheel touchmove', function(evt) {
 		// stop event
 		evt.preventDefault();
-		evt.stopPropagation();
-		var dy, dx;
-		if (evt.originalEvent.touches !== undefined) {
-			dy = touch.y - evt.originalEvent.touches[0].screenY;
-			dx = touch.x - evt.originalEvent.touches[0].screenX
-			touch.x = evt.originalEvent.touches[0].screenX;
-			touch.y = evt.originalEvent.touches[0].screenY;
-		} else {
-			dy = evt.originalEvent.deltaY || evt.originalEvent.wheelDeltaY; // change in y
-			dx = evt.originalEvent.deltaX || evt.originalEvent.wheelDeltaX; // change in x
-		}
-		
-		var absDy = Math.abs(dy); // absolute change in y
-		var absDx = Math.abs(dx); // absolute change in x
 
-		if (oldDy) {
-			var ay = dy - oldDy; // acceleration in y
-		}
-		if (oldDx) {
-			var ax = dx - oldDx; // acceleration in x
-		}
+		dx = evt.originalEvent.wheelDeltaX; // change in x
+		dy = evt.originalEvent.wheelDeltaY; // change in y
 
-		oldDy = dy;
-		oldDx = dx;
-
-		// is accelerating
-		if ( ( ay && (dy > 0 && ay > 0) || (dy < 0 && ay < 0) ) ||
-			 ( ax && (dx > 0 && ax > 0) || (dx < 0 && ax < 0) ) ) {
-
-			if (canScroll && absDy > absDx && absDy > 5) {
-				canScroll = false;
-				if (dy < 0) {
-					pageUp();
-				} else {
+		if (id !== '#'+this.id) {
+			if (Math.abs(dy) > Math.abs(dx)) {
+				if (dy < 0 && '#'+this.id !== pages.children[pages.children.length - 1].id) {
 					pageDown();
-				}
-			} else if (canScroll && absDx > absDy && absDx > 5) {
-				canScroll = false;
-				if (dx < 0) {
-					pageLeft();
-				} else {
-					pageRight();
+				} else if (dy > 0 && '#'+this.id !== pages.children[0].id) {
+					pageUp();
 				}
 			}
-
-
-			if (timeout) {
-				clearTimeout(timeout);
-			}
-			timeout = setTimeout(function() {
-				canScroll = true;
-				oldDy = null;
-				console.log('done');
-			}, 100);
 		}
-
 	});
+
+	for (var i = 0, sub = null; sub = pages.children[i]; i++) {
+		if (sub.children.length > 1) {
+			(function(sub) {
+				var selector = sub.children.map(function(child){return child.id;}).join(', ');
+				$(selector).on('mousewheel touchmove', function(evt) {
+					evt.preventDefault();
+
+					dx = evt.originalEvent.wheelDeltaX; // change in x
+					dy = evt.originalEvent.wheelDeltaY; // change in y
+
+					if (sid !== '#'+this.id) {
+						if (Math.abs(dy) < Math.abs(dx)) {
+							if (dx < 0 && '#'+this.id !== sub.children[sub.children.length - 1].id) {
+								pageRight();
+							} else if (dx > 0 && '#'+this.id !== sub.children[0].id) {
+								pageLeft();
+							}
+						}
+					}
+				});
+			})(sub);
+		}
+	}
 
 	$('body').on('keyup', function(evt) {
 		var code = evt.keyCode;
