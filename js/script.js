@@ -1,4 +1,5 @@
 var id = sid = '';
+var isScrolling = false;
 
 
 function createVerticalNav(data) {
@@ -82,8 +83,9 @@ function getCurrentPage() {
 	}
 }
 
-function getRoute() {
-	var parts = window.location.pathname.split("/");
+function getRoute(url) {
+	url = url === undefined?window.location.pathname:url;
+	var parts = url.split("/");
 
 	for (var i = 0, main = null; main = pages.children[i]; i++) {
 		if (main.url === parts[1]) {
@@ -124,6 +126,14 @@ function pageExists(mainIndex, subIndex) {
 function goToPage(mainIndex, subIndex) {
 	if (subIndex === undefined) {
 		subIndex = 0;
+	}
+
+	var current = getCurrentPage();
+	if (current.main.index !== mainIndex) {
+		id = current.main.id;
+	}
+	if (current.sub.index !== subIndex) {
+		sid = current.sub.id;
 	}
 
 	if (pageExists(mainIndex, subIndex)) {
@@ -167,29 +177,28 @@ function checkPages() {
 
 function pageUp() {
 	var current = getCurrentPage();
-	id = current.main.id;
-
+	
 	if (pageExists(current.main.index - 1)) {
 		goToPage(current.main.index - 1);
 	} else {
 		bounceUp();
+		id = '';
 	}
 }
 
 function pageDown() {
 	var current = getCurrentPage();
-	id = current.main.id;
 
 	if (pageExists(current.main.index + 1)) {
 		goToPage(current.main.index + 1);
 	} else {
 		bounceDown();
+		id = '';
 	}
 }
 
 function pageLeft() {
 	var current = getCurrentPage();
-	sid = current.sub.id;
 
 	if (pageExists(current.main.index, current.sub.index - 1)) {
 		goToPage(current.main.index, current.sub.index - 1);
@@ -200,7 +209,6 @@ function pageLeft() {
 
 function pageRight() {
 	var current = getCurrentPage();
-	sid = current.sub.id;
 
 	if (pageExists(current.main.index, current.sub.index + 1)) {
 		goToPage(current.main.index, current.sub.index + 1);
@@ -210,6 +218,7 @@ function pageRight() {
 }
 
 function bounceUp() {
+	isScrolling = true;
 	var container = $('#container');
 	container.animate({'scrollTop': container.scrollTop() - 70 }, {
 		'queue': false,
@@ -223,6 +232,7 @@ function bounceUp() {
 }
 
 function bounceDown() {
+	isScrolling = true;
 	var container = $('#container');
 	container.animate({'scrollTop': container.scrollTop() + 70 }, {
 		'queue': false,
@@ -236,12 +246,14 @@ function bounceDown() {
 }
 
 function scrollTo(mainId, subId, mainSettings, subSettings) {
+	isScrolling = true;
 	var container = $('#container');
 	container.animate({'scrollTop': container.scrollTop() + $(mainId).offset().top }, mainSettings?mainSettings:{
 		'queue': false,
 		'easing': 'swing',
 		'duration': 500,
 		'complete': function() {
+			isScrolling = false;
 			var otherSubs = $('.main:not('+mainId+') .container');
 			otherSubs.animate({'scrollLeft': 0 }, {
 				'duration': 0,
@@ -253,6 +265,7 @@ function scrollTo(mainId, subId, mainSettings, subSettings) {
 	var subContainer = $(mainId + ' .container');
 	subContainer.animate({'scrollLeft': subContainer.scrollLeft() + $(subId).offset().left }, subSettings?subSettings:{
 		'easing': 'swing',
+		'queue': false,
 		'duration': 400
 	});
 }
@@ -265,7 +278,10 @@ $(window).ready(function() {
 	var route = getRoute();
 	goToPage(route.main.index, route.sub.index);
 	scrollTo(route.main.id, route.sub.id, {
-		'duration': 0
+		'duration': 0,
+		'complete': function() {
+			isScrolling = false;
+		}
 	}, {
 		'duration': 0
 	});
@@ -280,7 +296,7 @@ $(window).ready(function() {
 		dx = evt.originalEvent.wheelDeltaX; // change in x
 		dy = evt.originalEvent.wheelDeltaY; // change in y
 
-		if (id !== '#'+this.id) {
+		if (id !== '#'+this.id && !isScrolling) {
 			if (Math.abs(dy) > Math.abs(dx)) {
 				if (dy < 0 && '#'+this.id !== pages.children[pages.children.length - 1].id) {
 					pageDown();
@@ -301,7 +317,7 @@ $(window).ready(function() {
 					dx = evt.originalEvent.wheelDeltaX; // change in x
 					dy = evt.originalEvent.wheelDeltaY; // change in y
 
-					if (sid !== '#'+this.id) {
+					if (sid !== '#'+this.id && !isScrolling) {
 						if (Math.abs(dy) < Math.abs(dx)) {
 							if (dx < 0 && '#'+this.id !== sub.children[sub.children.length - 1].id) {
 								pageRight();
@@ -332,7 +348,10 @@ $(window).ready(function() {
 		var current = getCurrentPage();
 		scrollTo(current.main.id, current.sub.id, {
 			'queue': false,
-			'duration': 0
+			'duration': 0,
+			'complete': function() {
+				isScrolling = false;
+			}
 		}, {
 			"queue": false,
 			'duration': 0
@@ -348,5 +367,11 @@ $(window).ready(function() {
 	$('.up.arrow').click(pageUp);
 	$('.right.arrow').click(pageRight);
 	$('.left.arrow').click(pageLeft);
+
+	$('a.internal').click(function(evt) {
+		evt.preventDefault();
+		var route = getRoute(this.pathname);
+		goToPage(route.main.index, route.sub.index);
+	});
 });
 

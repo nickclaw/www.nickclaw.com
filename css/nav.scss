@@ -1,4 +1,4 @@
-$iconMargin: 20px;
+$iconMargin: 15px;
 
 .nav {
 	-webkit-user-select: none;
@@ -22,28 +22,32 @@ $iconMargin: 20px;
 			display: block;
 			position: relative;
 			overflow: visible;
-			color: rgba(255,255,255,0);
+			color: rgba(0,0,0,0);
 			-webkit-transition: color .5s ease;
 			width: 100px;
 			font-size: 14pt;
+			pointer-events: none;
 		}
 
 		*[data-title]:hover:before {
-			color: rgba(255,255,255,.5);
+			color: rgba(0,0,0,1);
 		}
 
 		.indicator {
 			background-color: transparent;
-			border: solid white 4px;
+			border: solid black 4px;
 			border-radius: 25px;
 
 			&.active {
-				background-color: white;
+				background-color: black;
 			}
 		}
 
 		.control {
-			background-size: contain;
+			background: {
+				size: contain;
+				repeat: no-repeat;
+			}
 		}
 	}
 
@@ -78,10 +82,10 @@ $iconMargin: 20px;
 
 		.control {
 			&.first {
-				background-image: url(../image/arrow_up.png);
+				background-image: url(../image/arrows/arrow_up.png);
 			}
 			&.last {
-				background-image: url(../image/arrow_down.png);
+				background-image: url(../image/arrows/arrow_down.png);
 			}
 		}
 	}
@@ -118,10 +122,10 @@ $iconMargin: 20px;
 
 		.control {
 			&.first {
-				background-image: url(../image/arrow_left.png);
+				background-image: url(../image/arrows/arrow_left.png);
 			}
 			&.last {
-				background-image: url(../image/arrow_right.png);
+				background-image: url(../image/arrows/arrow_right.png);
 			}
 		}
 	}
@@ -134,6 +138,7 @@ $iconMargin: 20px;
 .indicator.active + .control.last {
 	opacity: 0;
 	cursor: default;
+	pointer-events: none;
 }
 
 .page, .vertical {

@@ -8,7 +8,7 @@ var pages = {
 			"index": 0,
 			"id":"#home",
 			"url":"",
-			"title": "home",
+			"title": "nickclaw",
 
 			"currentIndex": 0,
 			"children": [
@@ -16,7 +16,7 @@ var pages = {
 					"index": 0,
 					"id": "#home-main",
 					"url": "",
-					"title": "home"
+					"title": "nickclaw"
 				}
 			]
 
@@ -80,12 +80,6 @@ var pages = {
 					"id": "#contact-main",
 					"url": "",
 					"title": "contact"
-				},
-				{	
-					"index": 1,
-					"id": "#contact-message",
-					"url": "message",
-					"title": "message"
 				}
 			]
 		},

@@ -3,24 +3,32 @@
 	<head>
 		<title>nickclaw</title>
 		<link href="/css/main.css" rel="stylesheet" type="text/css" />
+		<link rel="icon" type="image/png" href="/image/favicon.png" />
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.history.js"></script>
 		<script src="/js/pages.js"></script>
 		<script src="/js/script.js"></script>
+
+		<noscript>
+			<link href="/css/noscript.css" rel="stylesheet" type="text/css" />
+		</noscript>
 	</head>
 	<body>
 		<div id="container" class="container vertical">
 			<div id="bounce-top" class="bounce"></div>
 			<div id="home" class="page main">
-				<h1>nickclaw</h1>
 				<div class="content">
 					<div class="container horizontal">
 
 						<div id="home-main" class="page sub">
 							<div class="content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis ac justo auctor feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec nulla sapien, dignissim gravida tortor in, faucibus tempor metus. Nulla et augue laoreet, sollicitudin purus a, hendrerit augue.</p>
+									<img id="logo" src="/image/logo.png" alt="nick clawson" />
+									<p id="script">Navigate with the arrows, your arrow keys, scroll wheel, or finger.</p>
+									<noscript>
+										<p id="noscript">Uh oh. It looks like you have javascript disabled. A few features not might work.</p>
+									</noscript>
 									<div id="instructions">
-										<img id="downArrow" class="down arrow" src="/image/arrow_large_skinny_down.png" />
+										<img id="downArrow" class="down arrow" src="/image/arrows/arrow_large_skinny_down.png" />
 									</div>
 								
 							</div>
@@ -36,12 +44,11 @@
 
 						<div id="about-main" class="page sub">
 							<div class="content">
-								<div class="column">
-									
-								</div>
-								<div class="column">
+								<p><span style="float:right; margin: 7px 15px;" class="image small"></span>Nick Clawson was born in Los Angeles, but spent his childhood growing up in beautiful Bellingham, Washington. As a kid he pursued a variety of subjects, excelling in everything from filmmaking to 3D modeling and animation. He is currently on his way to earning a BS in Informatics from the University of Washington, with a focus on Human Computer Interaction.</p>
 
-								</div>
+								<p>In addition to attending college full time, Nick does web development for the Department of Biology at UW, <a class="internal" href="/projects/biology">creating and maintaining</a> services used by thousands of students every quarter. And works with a team to develop an advanced touch screen interface for the <a href="/projects/ecocar" class="internal">UW EcoCar2 team</a>.</p>
+
+								<p>When he's not doing extracurriculars, Nick enjoys camping, backpacking, skiing, playing tennis, and attending concerts with his friends.</p>
 							</div>
 						</div>
 					</div>
@@ -57,12 +64,11 @@
 						<div id="projects-main" class="page sub">
 							<div class="content">
 								<div class="column">
-									<p>afasfa fljfl;as jfl;asj  lfjas l;fjl ;sjfl;asjfl ;kasjfl;  ;asjf l;a sjfl;asj fjal s;fj ;as fjl;  ajfgl;g</p>
-									<p>jl;hl;ds  dlj g dslgjls d;gj l;dsgj dslgj dsgsdgjl;sdjg l;s ;kasjfl;  ;asjf l;a sjfl;asj fjal s;fj ;as fjl;  ajfgdgj ;lsdgj ;lsd gjl;ds jgl;sdj gl;sdj gl;sdjgl;dsjg</p>
+									
 								</div>
 								<div class="column" style="display:table;">
 									<div class="arrowRightContainer">
-										<img class="right arrow" src="/image/arrow_large_skinny_right.png" />
+										<img class="right arrow" src="/image/arrows/arrow_large_skinny_right.png" />
 									</div>
 								</div>
 							</div>
@@ -70,29 +76,58 @@
 
 						<div id="projects-ecocar" class="page sub">
 							<div class="content">
-								<h2>yayayaya</h2>
+								<div class="column images">
+									<div class="image big"></div>
+									<div class="image small"></div>
+									<div class="image small"></div>
+								</div>
+								<div class="column">
+									<h2>ecocar</h2>
+									<p>Part of the international EcoCar competition, worked in a team to design and develop a touch screen interface to replace the dashboard of the car.</p>
+
+									<p>Focused on creating an interface that was simple, safe, and appealing. Recieved 2nd place in the competition.</p>
+
+									<div class="images">
+									<a href="https://github.com/MixMasterMitch/UWCenterStack" class="external button github" target="_blank"></a>
+									<a href="http://www.uwecocar2.com" class="external button biology" target="_blank"></a>
+									</div>
+								</div>
 							</div>
 						</div>
 
 						<div id="projects-biology" class="page sub">
 							<div class="content">
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-								<h2>yayayaya</h2>
-
+								<div class="column images">
+									<div class="image big"></div>
+									<div class="image small"></div>
+									<div class="image small"></div>
+								</div>
+								<div class="column">
+									<h2>biology</h2>
+									<p>A course site system used by the Biology department and University of Washington. Used by multiple classes and thousands of students every quarter, it features robust security, multiple teaching tools, and has a wide range of customizability. </p>
+									<div class="images">
+										<a href="https://www.github.com/dmhurley/course-site" class="external button github" target="_blank"></a>
+										<a href="http://courses.biology.washington.edu/biol180" class="external button biology" target="_blank"></a>
+									</div>
+								</div>
 							</div>
 						</div>
 
 						<div id="projects-window-tiler" class="page sub">
 							<div class="content">
-								<h2>yayayaya</h2>
+								<div class="column images">
+									<div class="image big"></div>
+									<div class="image small"></div>
+									<div class="image small"></div>
+								</div>
+								<div class="column">
+									<h2>window tiler</h2>
+									<p>A Chrome extension to quickly position windows. It features basic tab management utilities, support for multiple screens, responsive layout options, and a quick interface.</p>
+									<div class="images">
+										<a href="https://www.github.com/nickclaw/window-tiler" class="external button github" target="_blank"></a>
+										<a href="https://chrome.google.com/webstore/detail/window-tiler/finlcpffocibdmdkmaobgeoofbiddmfp" class="external button chrome" target="_blank"></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -100,30 +135,19 @@
 			</div>
 
 			<div id="contact" class="page main">
-				<h1>contact</h1>
 				<div class="content">
 					<div class="container horizontal">
 
 						<div id="contact-main" class="page sub">
 							<div class="content">
-								<div class="column">
-									<p>afasfa fljfl;as jfl;asj  lfjas l;fjl ;sjfl;asjfl ;kasjfl;  ;asjf l;a sjfl;asj fjal s;fj ;as fjl;  ajfgl;gjl;hl;ds  dlj g dslgjls d;gj l;dsgj dslgj dsgsdgjl;sdjg l;sdgj ;lsdgj ;lsd gjl;ds jgl;sdj gl;sdj gl;sdjgl;dsjg</p>
-								</div>
-								<div class="column" style="display:table;">
-									<div class="arrowRightContainer">
-										<img class="right arrow" src="/image/arrow_large_skinny_right.png" />
-									</div>
+								<div class="images">
+									<a href="mailto:nickclaw@uw.edu" class="external button mail hover" data-title="email" data-text="nickclaw@uw.edu"></a>
+									<a class="external button phone hover" data-title="phone" data-text="360.441.2515"></a>
+									<a href="http://www.github.com/nickclaw" target="_blank" class="external button github hover" data-title="github" data-text="github.com/nickclaw"></a>
+									<a href="http://gplus.to/nickclaw" target="_blank" class="external button plus hover" data-title="google+" data-text="gplus.to/nickclaw"></a>
 								</div>
 							</div>
 						</div>
-
-						<div id="contact-message" class="page sub">
-							<div class="content">
-								
-
-							</div>
-						</div>
-
 					</div>
 				</div>
 			</div>

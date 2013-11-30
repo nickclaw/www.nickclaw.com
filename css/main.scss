@@ -1,8 +1,9 @@
 @import "nav.scss";
 @import "content.scss";
+@import "buttons.scss";
 
 $leftOffset: 100px;
-$topOffset: 150px;
+$topOffset: 110px;
 
 
 * {
@@ -23,8 +24,15 @@ body, html, #container {
 
 	h1 {
 		position:absolute;
-		top: 30px;
-		left: $leftOffset - 20px;
+		top: 0px;
+		left: 20%;
+		left: calc((100% - 700px)/2);
+
+		@media all and (max-width: 750px) {
+			left: 25px;
+		}
+
+		width: 700px;
 	}
 
 	.content {
@@ -47,9 +55,13 @@ body, html, #container {
 
 		.page {
 			display: inline-block;
-			padding-left: $leftOffset;
 		}
 	}
+}
+
+.bounce {
+	height: 70px;
+	//background-image: url('../image/noise/noise.png');
 }
 
 
@@ -57,15 +69,25 @@ body, html, #container {
 .page.main {
 	padding-top: $topOffset;
 
-		&:nth-child(3n) {
-			background-image: url('../image/noiseblue.png');
-		}
-		&:nth-child(3n+1) {
-			background-image: url('../image/noiseyellow.png');
-		}
-		&:nth-child(3n+2) {
-			background-image: url('../image/noisegreen.png');
-		}
+	
+	&:nth-child(3n) {
+		background-image: url('../image/noise/noiseblue.png');
 	}
+	&:nth-child(3n+1) {
+		background-image: url('../image/noise/noiseyellow.png');
 	}
+	&:nth-child(3n+2) {
+		background-image: url('../image/noise/noisegreen.png');
+	}
+	
+
+	/**
+	&:nth-child(2n) {
+		background: #FFF;
+	}
+
+	&:nth-child(2n+1) {
+		background: #F9F9F9;
+	}
+	**/
 }
