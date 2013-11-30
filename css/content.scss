@@ -117,6 +117,8 @@ h3 {
 
 			.image.small {
 				display:none;
+				width:30%;
+				padding-top:30%;
 			}
 
 			&.images, .images {
@@ -143,8 +145,9 @@ h3 {
 	vertical-align:middle;
 	text-align: center;
 
-	.arrowRight {
-	
+	.arrow.right {
+		max-width: 40%;
+		max-height: 40%;
 	}
 }
 
@@ -199,6 +202,21 @@ h3 {
 	text-align:center;
 }
 
+#projects-main {
+	.image {
+		display: inline-block !important;
+	}
+	.image:nth-child(6n+1) {
+		background-image: url(../image/pages/window-tiler/main.png);
+	}
+	.image:nth-child(6n+2) {
+		background-image: url(../image/pages/ecocar/main.jpg);
+	}
+	.image:nth-child(6n+3) {
+		background-image: url(../image/pages/biology/main.png);
+	}
+}
+
 #projects-window-tiler {
 	.image:nth-child(3n+1) {
 		background-image: url(../image/pages/window-tiler/main.png);
@@ -249,7 +267,7 @@ h3 {
 			color: black;
 			text-decoration: none;
 
-			&:before, &:after {
+			&:before /*, &:after */ {
 				display:block;
 				position: relative;
 				width: 200px;
@@ -260,7 +278,7 @@ h3 {
 				-webkit-transition: opacity .3s ease;
 			}
 
-			&:hover:before, &:hover:after {
+			&:hover:before /* , &:hover:after */ {
 				opacity: .7;
 			}
 
@@ -269,10 +287,12 @@ h3 {
 				top: 60px;
 			}
 
+			/*
 			&:after {
 				content: attr(data-title);
 				bottom: 40px;
 			}
+			*/
 		}
 	}
 }
