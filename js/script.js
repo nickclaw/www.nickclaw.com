@@ -13,13 +13,11 @@ function createVerticalNav(data) {
 
 	$(data.children).each(function(index, value) {
 			inner.append(
-				$(document.createElement('div'))
-					.addClass(index===0?'indicator active':'indicator')
+				$(document.createElement('a'))
+					.addClass(index===0?'indicator active internal':'indicator internal')
 					.attr('data-index', index)
 					.attr('data-title', value.title)
-					.click(function() {
-						goToPage(index);
-					})
+					.attr('href', '/'+value.url)
 			);
 			if (value.children.length > 1) {
 				createHorizontalNav(value, index);
@@ -50,13 +48,10 @@ function createHorizontalNav(data, parent) {
 
 	$(data.children).each(function(index, value) {
 			inner.append(
-				$(document.createElement('div'))
-					.addClass(index===0?'indicator active':'indicator')
+				$(document.createElement('a'))
+					.addClass(index===0?'indicator internal active':'indicator internal')
 					.attr('data-index', index)
-					//.attr('data-title', value.title)
-					.click(function() {
-						goToPage(parent, index);
-					})
+					.attr('href', '/'+data.url+'/'+value.url)
 			);
 		});
 
@@ -363,10 +358,10 @@ $(window).ready(function() {
 		scrollTo(route.main.id, route.sub.id);
 	}
 
-	$('.down.arrow').click(pageDown);
-	$('.up.arrow').click(pageUp);
-	$('.right.arrow').click(pageRight);
-	$('.left.arrow').click(pageLeft);
+	$('.down.arrow.control').click(pageDown);
+	$('.up.arrow.control').click(pageUp);
+	$('.right.arrow.control').click(pageRight);
+	$('.left.arrow.control').click(pageLeft);
 
 	$('a.internal').click(function(evt) {
 		evt.preventDefault();
