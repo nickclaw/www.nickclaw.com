@@ -14,7 +14,11 @@
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.history.js"></script>
 		<script src="/js/pages.js"></script>
-		<script src="/js/script.js"></script>
+		<script src="/js/Page.js"></script>
+		<script src="/js/PageManager.js"></script>
+		<script src="/js/Scroller.js"></script>
+		<script src="/js/Listener.js"></script>
+		<script src="/js/Site.js"></script>
 
 		<noscript>
 			<link href="/css/noscript.css" rel="stylesheet" type="text/css" />
@@ -29,17 +33,16 @@
 
 						<div id="home-main" class="page sub">
 							<div class="content">
-									<img id="logo" src="/image/logo.png" alt="nick clawson" />
-									<p id="script">Navigate with the arrows, your arrow keys, scroll wheel, or finger.</p>
-									<noscript>
-										<p id="noscript">Uh oh. It looks like you have javascript disabled. A few features not might work.</p>
-									</noscript>
-									<div id="instructions">
-										<a href="/about" class="internal">
-											<img id="downArrow" class="down arrow" src="/image/arrows/arrow_large_skinny_down.png" />
-										</a>
-									</div>
-								
+								<img id="logo" src="/image/logo.png" alt="nick clawson" />
+								<p id="script">Navigate with the arrows, your arrow keys, scroll wheel, or finger.</p>
+								<noscript>
+									<p id="noscript">Uh oh. It looks like you have javascript disabled. A few features not might work.</p>
+								</noscript>
+								<div id="instructions">
+									<a href="/about" class="internal">
+										<img id="downArrow" class="down arrow" src="/image/arrows/arrow_large_skinny_down.png" />
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -147,6 +150,16 @@
 							</div>
 						</div>
 					</div>
+					<div class="nav horizontal">
+						<div class="indicators">
+							<div class="control first"></div>
+							<a class="indicator internal" data-index="0" href="/projects"></a>
+							<a class="indicator internal" data-index="1" href="/projects/ecocar"></a>
+							<a class="indicator internal" data-index="2" href="/projects/biology"></a>
+							<a class="indicator internal" data-index="3" href="/projects/window-tiler"></a>
+							<div class="control last"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -168,7 +181,19 @@
 				</div>
 			</div>
 			<div id="bounce-bottom" class="bounce"></div>
-
+			<div class="nav vertical">
+				<div class="indicators">
+					<div class="control first"></div>
+					<a class="indicator internal" data-index="0" href="/"></a>
+					<a class="indicator internal" data-index="1" data-title="about" href="/about"></a>
+					<a class="indicator internal" data-index="2" data-title="projects" href="/projects"></a>
+					<a class="indicator internal" data-index="3" href="/contact"></a>
+					<div class="control last"></div>
+				</div>
+			</div>
 		</div>
 	</body>
+	<script>
+		site = new Site();
+	</script>
 </html>

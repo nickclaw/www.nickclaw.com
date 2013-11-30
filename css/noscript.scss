@@ -6,8 +6,12 @@
 	cursor: auto;
 }
 
-.container {
-	overflow: scroll;
+.container.vertical {
+	overflow-y: scroll;
+}
+
+.container.horizontal {
+	overflow-x:scroll;
 }
 
 a.internal {
