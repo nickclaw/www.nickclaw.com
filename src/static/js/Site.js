@@ -1,7 +1,14 @@
 /**
+ * is the scroller scrolling?
  * @type {boolean}
  */
 var isScrolling = false;
+
+/** 
+ * did the container just bounce?
+ * @type {boolean}
+ */
+var didBounce = false;
 
 /**
  * Main site object
@@ -106,13 +113,18 @@ function Site() {
 	/**
 	 * handles moving page when url changes
 	 * @param {?} evt
+	 * @param {boolean=} scroll
 	 * @this {?}
 	 */
-	this.onStateChange = function(evt) {
+	this.onStateChange = function(evt, moveTo) {
 		var page = self.manager.route();
 		if (page) {
 			self.manager.setCurrent(page);
-			self.scroller.scrollTo(page);
+			if (moveTo) {
+				self.scroller.moveTo(page);
+			} else {
+				self.scroller.scrollTo(page);
+			}
 
 
 			// hide or show navs as needed
@@ -143,7 +155,7 @@ function Site() {
 	this.init = function() {
 		self.manager = new PageManager();
 		self.scroller = new Scroller();
-		self.onStateChange(); // todo no transition
+		self.onStateChange(null, true); // todo no transition
 
 
 		self.listener = new Listener(self.manager)

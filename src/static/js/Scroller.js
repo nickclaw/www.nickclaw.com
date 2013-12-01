@@ -4,12 +4,15 @@
  */
 function Scroller() {
 
+	var self = this;
+
 	/** 
 	 * scrolls to the given page
-	 * @param {Page}
+	 * @param {Page} page
 	 */
 	this.scrollTo = function(page) {
 		isScrolling = true;
+		didBounce = false;
 		
 		var container = $('#container');
 		container.animate({
@@ -39,20 +42,63 @@ function Scroller() {
 		});
 	}
 
-	this.bounceUp = function() {
+	/**
+	 * moves to the given page
+	 * @param {Page} page
+	 */
+	this.moveTo = function(page) {
+		var container = $('#container');
+		container.scrollTop(container.scrollTop() + $(page.up().id).offset().top);
 
+		var subContainer = $(page.up().id + ' .container');
+		subContainer.scrollLeft(subContainer.scrollLeft() + $(page.id).offset().left);
+
+		$('.main:not('+ page.up().id +') .container').scrollLeft(0);
+	}
+
+	this.bounceUp = function() {
+		self.bounce('top', 50);
 	}
 
 	this.bounceDown = function() {
-
+		self.bounce('bottom', 50);
 	}
 
 	this.bounceRight = function() {
-
+		self.bounce('right', 50);
 	}
 
 	this.bounceLeft = function() {
+		self.bounce('left', 50);
+	}
 
+	/**
+	 * bounces the container
+	 * @private
+	 * @param {string} direction The direction to bounce
+	 * @param {number} distance  The distance to bounce out
+	 */
+	this.bounce = function(direction, distance) {
+		if (!didBounce && !isScrolling) {
+			isScrolling = true;
+			didBounce = true;
+
+			var properties = {};
+			properties[direction] = distance;
+			$('#container').animate(properties, {
+				'queue': true,
+				'easing': 'swing',
+				'duration': 200,
+				'complete': function() {
+					a = $(this);
+					properties[direction] = 0;
+					$(this).animate(properties, 200, 'swing', function() {
+						$(this).css(direction, 'auto');
+						isScrolling = false;
+					});
+				}
+			});
+		}
 	}
 
 }

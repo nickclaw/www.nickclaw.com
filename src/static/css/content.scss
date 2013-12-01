@@ -113,7 +113,7 @@ h3 {
 		height: 100%;
 		float: left;
 
-		@media all and (max-width: 500px) {
+		@media all and (orientation: vertical) {
 			float:none;
 			width: 100%;
 			height: auto;
@@ -235,7 +235,7 @@ h3 {
 		background-image: url(../image/pages/window-tiler/screen.jpg);
 	}
 	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/window-tiler/icon.jpg);
+		//background-image: ;
 		background-size: 75% 75%;
 	}
 }
