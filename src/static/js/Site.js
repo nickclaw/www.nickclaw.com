@@ -1,14 +1,43 @@
+/**
+ * @type {boolean}
+ */
+var isScrolling = false;
+
+/**
+ * Main site object
+ * @constructor
+ */
 function Site() {
+	/**
+	 * @const {PageManager}
+	 */
 	this.manager = null;
+
+	/**
+	 * @const {Scroller}
+	 */
 	this.scroller = null;
+
+	/**
+	 * @const {Listener}
+	 */
 	this.listener = null;
 
 	var self = this;
 
+	/** 
+	 * goes to the page
+	 * @param {Page} page
+	 */
 	this.goToPage = function(page) {
 		History.pushState(null, page.title, page.url);
 	}
 
+	/**
+	 * goes to the upper page if possible
+	 * @param {?} evt
+	 * @this {?}
+	 */
 	this.pageUp = function(evt) {
 		var newPage = self.manager.getUp();
 		if (newPage) {
@@ -18,6 +47,11 @@ function Site() {
 		}
 	}
 
+	/**
+	 * goes to the lower page if possible
+	 * @param {?} evt
+	 * @this {?}
+	 */
 	this.pageDown = function(evt) {
 		var newPage = self.manager.getDown();
 		if (newPage) {
@@ -27,6 +61,11 @@ function Site() {
 		}
 	}
 
+	/**
+	 * goes to the left page if possible
+	 * @param {?} evt
+	 * @this {?}
+	 */
 	this.pageLeft = function(evt) {
 		var newPage = self.manager.getLeft();
 		if (newPage) {
@@ -36,6 +75,11 @@ function Site() {
 		}
 	}
 
+	/**
+	 * goes to the right page if possible
+	 * @param {?} evt
+	 * @this {?}
+	 */
 	this.pageRight = function(evt) {
 		var newPage = self.manager.getRight();
 		if (newPage) {
@@ -45,6 +89,11 @@ function Site() {
 		}
 	}
 
+	/**
+	 * goes to the link if possible
+	 * @param {?} evt
+	 * @this {?}
+	 */
 	this.onLink = function(link) {
 		var newPage = self.manager.route(link.href);
 		if (newPage) {
@@ -54,7 +103,12 @@ function Site() {
 		}
 	}
 
-	this.onStateChange = function() {
+	/**
+	 * handles moving page when url changes
+	 * @param {?} evt
+	 * @this {?}
+	 */
+	this.onStateChange = function(evt) {
 		var page = self.manager.route();
 		if (page) {
 			self.manager.setCurrent(page);
@@ -83,6 +137,9 @@ function Site() {
 		}
 	}
 
+	/**
+	 * initializes the site
+	 */
 	this.init = function() {
 		self.manager = new PageManager();
 		self.scroller = new Scroller();
@@ -90,12 +147,16 @@ function Site() {
 
 
 		self.listener = new Listener(self.manager)
-			.onLeft(self.pageLeft)
-			.onRight(self.pageRight)
-			.onUp(self.pageUp)
-			.onDown(self.pageDown)
-			.onLink(self.onLink)
-			.onStateChange(self.onStateChange);
+			.on('left', self.pageLeft)
+			.on('right', self.pageRight)
+			.on('up', self.pageUp)
+			.on('down', self.pageDown)
+			.on('link', self.onLink)
+			.on('statechange', self.onStateChange);
 	}
 	self.init();
 }
+
+$(window).ready(function() {
+	site = new Site();
+});

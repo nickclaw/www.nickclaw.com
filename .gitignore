@@ -1,17 +1,9 @@
 
 *.css
-
-js/jquery.min.js
-
-js/jquery.history.js
-
 *.ai
+.sass-cache
 
 ~build
-
 build/
 
-.sass-cache
-src/static/js/jquery.history.js
-
-src/static/js/jquery.min.js
+src/static/js/external/*

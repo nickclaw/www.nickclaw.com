@@ -1,10 +1,24 @@
+/**
+ * Manages multiple page objects, knows current page
+ * @constructor
+ */
 function PageManager() {
+	/**
+	 * @type {Page}
+	 */
 	this.root = null;
-	//this.pages = [];
+
+	/**
+	 * @type {Array.<number>}
+	 */
 	this.position = [];
 
 	var self = this;
 
+	/** 
+	 * gets the current page
+	 * @return {Page} the current page
+	 */
 	this.getCurrent = function() {
 		var current = self.root;
 		for (var i = 0; i < self.position.length; i++) {
@@ -13,6 +27,11 @@ function PageManager() {
 		return current;
 	}
 
+	/**
+	 * gets the page given a url. Current url is used if url is not defined
+	 * @param {string=} url
+	 * @return {Page} the urls page
+	 */
 	this.route = function(url) {
 		url = url?url:(window.location.origin + window.location.pathname);
 		var thePage = null;
@@ -25,6 +44,10 @@ function PageManager() {
 		return thePage;
 	}
 
+	/**
+	 * sets the current page
+	 * @param {Page} page
+	 */
 	this.setCurrent = function(page) {
 		var position = [];
 		while (page && page.index !== null) {
@@ -34,6 +57,10 @@ function PageManager() {
 		self.position = position;
 	}
 
+	/**
+	 * returns the page above the current one
+	 * @return {?Page} the page above
+	 */
 	this.getUp = function() {
 		var current = self.getCurrent();
 		var parent = current.up().getPreviousSibling();
@@ -43,6 +70,10 @@ function PageManager() {
 		return null;
 	}
 
+	/**
+	 * returns the page below the current one
+	 * @return {?Page} the page below
+	 */
 	this.getDown = function() {
 		var current = self.getCurrent();
 		var parent = current.up().getNextSibling();
@@ -52,20 +83,35 @@ function PageManager() {
 		return null;
 	}
 
+	/**
+	 * returns the page left of the current one
+	 * @return {?Page} the page on the left
+	 */
 	this.getLeft = function() {
 		var current = self.getCurrent();
 		return current.getPreviousSibling();
 	}
 
+	/**
+	 * returns the page right of the current one
+	 * @return {?Page} the page on the right
+	 */
 	this.getRight = function() {
 		var current = self.getCurrent();
 		return current.getNextSibling();
 	}
 
+	/**
+	 * calls callback on every page
+	 * @param {function(Page)} callback
+	 */
 	this.each = function(callback) {
 		self.root.each(callback);
 	}
 
+	/**
+	 * initializes the manager
+	 */
 	this.init = function() {
 		self.root = new Page(null, null, pages);
 		var current = self.root;

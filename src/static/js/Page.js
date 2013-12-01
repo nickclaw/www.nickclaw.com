@@ -1,18 +1,65 @@
+/**
+ * Represents one page
+ * @constructor
+ */
 function Page(parent, index, data) {
+	/**
+	 * page id (format: '#abc')
+	 * @type {string}
+	 */
 	this.id = ""
+
+	/**
+	 * the pages full url
+	 * @type {string}
+	 */
 	this.url = "";
+
+	/**
+	 * the pages title
+	 * @type {string}
+	 */
 	this.title = "";
+
+	/**
+	 * the pages parent or null
+	 * @type {?Page}
+	 */
 	this.parent = null;
+
+	/**
+	 * this pages index in it's parent
+	 * @type {?number}
+	 */
 	this.index = null;
+
+	/**
+	 * this pages children
+	 * @type {Array.<Page>}
+	 */
 	this.children = [];
+
+	/**
+	 * the pages navvar if it has one
+	 * @type {?Object}
+	 */
 	this.nav = null;
 
 	var self = this;
 
+	/**
+	 * returns the parent page or null
+	 * @return {?Page} the parent page
+	 */
 	this.up = function() {
 		return this.parent;
 	}
 
+	/** 
+	 * searches for children using callback
+	 * @param {function(number, Page):boolean} testFn
+	 * @return {?Page} the matching child
+	 */
 	this.down = function(testFn) {
 		var chosen = null;
 		$(self.children).each(function(index, child) {
@@ -24,6 +71,10 @@ function Page(parent, index, data) {
 		return chosen;
 	}
 
+	/**
+	 * returns next sibling or null
+	 * @return {?Page} the next sibling
+	 */
 	this.getNextSibling = function() {
 		if (self.parent) {
 			return self.parent.children[self.index + 1];
@@ -32,6 +83,10 @@ function Page(parent, index, data) {
 		}
 	}
 
+	/**
+	 * returns previos sibling or null
+	 * @return {?Page} the previous sibling
+	 */
 	this.getPreviousSibling = function() {
 		if (self.parent) {
 			return self.parent.children[self.index - 1];
@@ -40,6 +95,11 @@ function Page(parent, index, data) {
 		}
 	}
 
+	/**
+	 * iterates over all child leaves
+	 * @param {function(Page)} callback called for every leaf Page
+	 * @param {Page=} root where to start searching (defaults to self)
+	 */
 	this.each = function(callback, root) {
 		root = root || self;
 		if (root.children.length > 0) {
@@ -47,10 +107,16 @@ function Page(parent, index, data) {
 				return self.each(callback, page);
 			});
 		} else {
-			return callback.call(this, root);
+			return callback(root);
 		}
 	}
 
+	/** 
+	 * initializes the page
+	 * @param {?Page} parent the parent page
+	 * @param {number} index the index of the page
+	 * @param {Object} data the pages data
+	 */
 	this.init = function(parent, index, data) {
 		self.id = data.id || "";
 		self.title = data.title || "";

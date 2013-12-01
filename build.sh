@@ -12,23 +12,26 @@ sass --scss --style compressed  ./src/static/css/main.scss ./build/static/css/ma
 #copy .htaccess and index.html
 cp ./src/.htaccess ./src/index.html ./build/
 
-#concatenate all js files to temporary files
+#concatenate all my js files to temporary file
 cat $( ls -S ./src/static/js/*.js ) > ./build/static/js/.script.js
 	
-
 #compile and minimize javascript
 in=./build/static/js/.script.js
-out=./build/static/js/script.js
+out=./build/static/js/..script.js
 curl -s \
-	-d compilation_level=SIMPLE_OPTIMIZATIONS \
+	-d compilation_level=ADVANCED_OPTIMIZATIONS \
 	-d output_format=text \
+	-d externs_url="https://closure-compiler.googlecode.com/git/contrib/externs/jquery-1.9.js"\
 	-d output_info=compiled_code \
 	--data-urlencode "js_code@${in}" \
 	http://closure-compiler.appspot.com/compile \
 	> $out
 
+# concatenate that with external scripts
+cat $(ls -S ./src/static/js/external/*.js) ./build/static/js/..script.js > ./build/static/js/script.js
+
 #remove temporary script file
-rm ./build/static/js/.script.js;
+rm ./build/static/js/.script.js ./build/static/js/..script.js
 
 cp -R ./src/static/image ./build/static
 

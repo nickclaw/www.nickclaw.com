@@ -1,5 +1,13 @@
+/**
+ * Object in charge of scrolling
+ * @constructor
+ */
 function Scroller() {
 
+	/** 
+	 * scrolls to the given page
+	 * @param {Page}
+	 */
 	this.scrollTo = function(page) {
 		isScrolling = true;
 		

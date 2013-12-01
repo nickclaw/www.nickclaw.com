@@ -1,4 +1,4 @@
-var pages = {
+window['pages'] = {
 	"id": "#container",
 	"url": window.location.origin,
 

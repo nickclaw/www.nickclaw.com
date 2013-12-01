@@ -1,78 +1,105 @@
+/**
+ * In charge of listening and function delegation for a Site
+ * @constructor
+ */
 function Listener(manager) {
-	this.manager = manager;	
-	this.up = null;
-	this.down = null;
-	this.right = null;
-	this.left = null;
-	this.link = null;
-	this.stateChange = null;
+	this.manager = manager;
+
+	/**
+	 * holds events
+	 * @dict
+	 * @private
+	 */
+	this.event = {
+		'link': [],
+		'up': [],
+		'down': [],
+		'left': [],
+		'right': [],
+		'statechange': []
+	};
 
 	var self = this;
 
-	this.onUp = function(fn) {
-		self.up = fn;
-		return self;
-	}
-	this.onDown = function(fn) {
-		self.down = fn;
-		return self;
-	}
-	this.onLeft = function(fn) {
-		self.left = fn;
-		return self;
-	}
-	this.onRight = function(fn) {
-		self.right = fn;
-		return self;
-	}
-	this.onLink = function(fn) {
-		self.link = fn;
-		return self;
-	}
-	this.onStateChange = function(fn) {
-		self.stateChange = fn;
+	/**
+	 * adds event listener
+	 * @param {string} type
+	 * @param {function(string, function(?):?)} fn
+	 * @return {Listener}
+	 */
+	this.on = function(type, fn) {
+		if (self.event[type]) {
+			self.event[type].push(fn);
+		} else {
+			throw "Event not supported.";
+		}
 		return self;
 	}
 
+	/** 
+	 * calls an event
+	 * @param {string} type
+	 * @param {?} callee
+	 * @param {?} evt
+	 */
+	this.dispatch = function(type, callee, evt) {
+		if (self.event[type]) {
+			$.each(self.event[type], function(index, fn) {
+				fn.call(callee, evt);
+			});
+		}
+	}
+
+	/**
+	 * adds listeners to all events
+	 */
 	this.addLinkListeners = function() {
 		$('a.internal').click(function(evt) {
 			evt.preventDefault();
-			if (self.link) {
-				self.link(this);
-			}
+			self.dispatch('link', this, evt);
 		});
 	}
 
+	/**
+	 * adds listener to state change
+	 */
 	this.addStateListeners = function() {
 		$(window).on('statechange', function(evt) {
-			if (self.stateChange) {
-				self.stateChange();
-			}
+			self.dispatch('statechange', this, evt);
 		});
 	}
 
+	/**
+	 * adds listeners to keys
+	 */
 	this.addKeyListeners = function() {
 		$('body').on('keyup', function(evt) {
 			var code = evt.keyCode;
-			if (code === 37 && self.left) {
-				self.left();
-			} else if (code === 38 && self.up) {
-				self.up();
-			} else if (code === 39 && self.right) {
-				self.right();
-			} else if (code === 40 && self.down) {
-				self.down();
+			if (code === 37) {
+				self.dispatch('left', this, evt);
+			} else if (code === 38) {
+				self.dispatch('up', this, evt);
+			} else if (code === 39) {
+				self.dispatch('right', this, evt);
+			} else if (code === 40) {
+				self.dispatch('down', this, evt);
 			}
 		});
 	}
 
+	/**
+	 * adds listeners to arrows
+	 */
 	this.addArrowListeners = function() {
-		$('.down.arrow.control').click(self.down);
-		$('.up.arrow.control').click(self.up);
-		$('.right.arrow.control').click(self.right);
-		$('.left.arrow.control').click(self.left);
+		// $('.down.arrow.control').click(self.down);
+		// $('.up.arrow.control').click(self.up);
+		// $('.right.arrow.control').click(self.right);
+		// $('.left.arrow.control').click(self.left);
 	}
 
+	/**
+	 * adds listener to scroll movements
+	 */
 	this.addScrollListeners = function() {
 		var mainSelector = self.manager.root.children.map(function(child) {return child.id;}).join(', ');
 		$(mainSelector).on('mousewheel touchmove', function(evt) {
@@ -87,9 +114,9 @@ function Listener(manager) {
 				if (current.up().id === '#'+this.id) {
 					if (Math.abs(dy) > Math.abs(dx)) {
 						if (dy < 0) {
-							self.down();
+							self.dispatch('down', this, evt);
 						} else if (dy > 0) {
-							self.up();
+							self.dispatch('up', this, evt);
 						}
 					}
 				}
@@ -99,26 +126,29 @@ function Listener(manager) {
 		$.each(self.manager.root.children, function(index, page) {
 			var selector = page.children.map(function(child){return child.id;}).join(', ');
 			$(selector).on('mousewheel touchmove', function(evt) {
-					evt.preventDefault();
-					if (!isScrolling) {
-						var dx = evt.originalEvent.wheelDeltaX; // change in x
-						var dy = evt.originalEvent.wheelDeltaY; // change in y
-						var current = self.manager.getCurrent(); // get current page
+				evt.preventDefault();
+				if (!isScrolling) {
+					var dx = evt.originalEvent.wheelDeltaX; // change in x
+					var dy = evt.originalEvent.wheelDeltaY; // change in y
+					var current = self.manager.getCurrent(); // get current page
 
-						if (current.id === '#'+this.id) {
-							if (Math.abs(dy) < Math.abs(dx)) {
-								if (dx < 0) {
-									self.right();
-								} else if (dx > 0) {
-									self.left();
-								}
+					if (current.id === '#'+this.id) {
+						if (Math.abs(dy) < Math.abs(dx)) {
+							if (dx < 0) {
+								self.dispatch('right', this, evt);
+							} else if (dx > 0) {
+								self.dispatch('left', this, evt);
 							}
 						}
 					}
-				});
+				}
+			});
 		});
 	}
 
+	/**
+	 * initializes the listener
+	 */
 	this.init = function() {
 		self.addLinkListeners();
 		self.addStateListeners();
