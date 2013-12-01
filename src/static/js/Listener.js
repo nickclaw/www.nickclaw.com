@@ -90,11 +90,19 @@ function Listener(manager) {
 	/**
 	 * adds listeners to arrows
 	 */
-	this.addArrowListeners = function() {
-		// $('.down.arrow.control').click(self.down);
-		// $('.up.arrow.control').click(self.up);
-		// $('.right.arrow.control').click(self.right);
-		// $('.left.arrow.control').click(self.left);
+	this.addControlListeners = function() {
+		$('.down.control').click(function(evt) {
+			self.dispatch('down', this, evt);
+		});
+		$('.up.control').click(function(evt) {
+			self.dispatch('up', this, evt);
+		});
+		$('.right.control').click(function(evt) {
+			self.dispatch('right', this, evt);
+		});
+		$('.left.control').click(function(evt) {
+			self.dispatch('left', this, evt);
+		});
 	}
 
 	/**
@@ -153,6 +161,7 @@ function Listener(manager) {
 		self.addLinkListeners();
 		self.addStateListeners();
 		self.addKeyListeners();
+		self.addControlListeners();
 		self.addScrollListeners();
 	}
 	self.init();

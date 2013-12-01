@@ -156,7 +156,7 @@ h3 {
 
 .arrow {
 	-webkit-transition: opacity .3s ease, bottom .1s ease, right .1s ease;
-	opacity: .4;
+	opacity: .5;
 	max-width: 100%;
 	max-height: 100%;
 	width: auto;
@@ -264,14 +264,11 @@ h3 {
 		background-image: url(../image/pages/ecocar/dial.jpg);
 	}
 }
+p a.internal {
 
-a.internal {
 	text-decoration: none;
 	color:black;
-	opacity: .65
-}
-
-p a.internal {
+	opacity: .65;
 	
 	&:before {
 		content: "";

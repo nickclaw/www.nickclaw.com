@@ -94,8 +94,8 @@ function Site() {
 	 * @param {?} evt
 	 * @this {?}
 	 */
-	this.onLink = function(link) {
-		var newPage = self.manager.route(link.href);
+	this.onLink = function(evt) {
+		var newPage = self.manager.route(this.href);
 		if (newPage) {
 			self.goToPage(newPage);
 		} else {
