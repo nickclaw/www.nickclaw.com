@@ -86,7 +86,7 @@ function Site() {
 	this.init = function() {
 		self.manager = new PageManager();
 		self.scroller = new Scroller();
-		self.onStateChange();
+		self.onStateChange(); // todo no transition
 
 
 		self.listener = new Listener(self.manager)

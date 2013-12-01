@@ -1,10 +1,5 @@
-@font-face {
-	font-family: OpenSans;
-	src: url(../font/OpenSans-Regular.ttf);
-}
-
 * {
-	font-family: OpenSans, sans-serif;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
 }
 
 #logo {
@@ -33,6 +28,14 @@ h2 {
 
 h3 {
 	font-size: 20px;
+}
+
+.tech {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 80%;
+	margin: 12px;
+	text-align: center;
+	opacity: .5;
 }
 
 .sub .content {
@@ -259,6 +262,29 @@ h3 {
 	}
 	.image:nth-child(3n+3) {
 		background-image: url(../image/pages/ecocar/dial.jpg);
+	}
+}
+
+a.internal {
+	text-decoration: none;
+	color:black;
+	opacity: .65
+}
+
+p a.internal {
+	
+	&:before {
+		content: "";
+	background: {
+		image: url(../image/buttons/link.png);
+		repeat: no-repeat;
+		size:contain;
+	}
+	opacity:.5;
+	display: inline-block;
+	width: 1em;
+	margin-top:.2em;
+	height: .8em;
 	}
 }
 
