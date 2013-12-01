@@ -13,22 +13,22 @@ sass --scss --style compressed  ./src/static/css/main.scss ./build/static/css/ma
 cp ./src/.htaccess ./src/index.html ./build/
 
 #concatenate all js files to temporary files
-cat ./src/static/js/*.js > ./build/static/js/.script.js
+cat $( ls -S ./src/static/js/*.js ) > ./build/static/js/.script.js
 	
 
 #compile and minimize javascript
 in=./build/static/js/.script.js
 out=./build/static/js/script.js
-#curl -s \
-#	-d compilation_level=ADVANCED_OPTIMIZATIONS \
-#	-d output_format=text \
-#	-d output_info=compiled_code \
-#	--data-urlencode "js_code@${in}" \
-#	http://closure-compiler.appspot.com/compile \
-#	> $out
+curl -s \
+	-d compilation_level=SIMPLE_OPTIMIZATIONS \
+	-d output_format=text \
+	-d output_info=compiled_code \
+	--data-urlencode "js_code@${in}" \
+	http://closure-compiler.appspot.com/compile \
+	> $out
 
 #remove temporary script file
-mv ./build/static/js/.script.js ./build/static/js/script.js
+rm ./build/static/js/.script.js;
 
 cp -R ./src/static/image ./build/static
 
@@ -36,7 +36,7 @@ cp -R ./src/static/image ./build/static
 cd build
 for f in `find . -name "*.png"`
 do
-    convert $f -quality 10 -strip $f
+    convert $f -quality 0 -strip $f
 done
 cd ..
 
