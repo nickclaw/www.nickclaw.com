@@ -4,12 +4,6 @@
  */
 var isScrolling = false;
 
-/** 
- * did the container just bounce?
- * @type {boolean}
- */
-var didBounce = false;
-
 /**
  * Main site object
  * @constructor
@@ -49,8 +43,6 @@ function Site() {
 		var newPage = self.manager.getUp();
 		if (newPage) {
 			self.goToPage(newPage);
-		} else {
-			self.scroller.bounceUp();
 		}
 	}
 
@@ -63,8 +55,6 @@ function Site() {
 		var newPage = self.manager.getDown();
 		if (newPage) {
 			self.goToPage(newPage);
-		} else {
-			self.scroller.bounceDown();
 		}
 	}
 
@@ -77,8 +67,6 @@ function Site() {
 		var newPage = self.manager.getLeft();
 		if (newPage) {
 			self.goToPage(newPage);
-		} else {
-			self.scroller.bounceLeft();
 		}
 	}
 
@@ -91,8 +79,6 @@ function Site() {
 		var newPage = self.manager.getRight();
 		if (newPage) {
 			self.goToPage(newPage);
-		} else {
-			self.scroller.bounceRight();
 		}
 	}
 
