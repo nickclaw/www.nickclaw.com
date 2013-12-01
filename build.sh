@@ -39,8 +39,14 @@ cp -R ./src/static/image ./build/static
 cd build
 for f in `find . -name "*.png"`
 do
-    convert $f -quality 0 -strip $f
+    convert $f -fuzz 10% -transparent none -strip $f
 done
+
+for f in `find . -name "*.jpg"`
+do
+    convert $f -quality 60 -resize 66% -strip $f
+done
+
 cd ..
 
 
