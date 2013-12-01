@@ -127,3 +127,4 @@ function Listener(manager) {
 	}
 	self.init();
 }
+

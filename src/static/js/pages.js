@@ -69,6 +69,6 @@ var pages = {
 					"title": "contact"
 				}
 			]
-		},
+		}
 	]
 };

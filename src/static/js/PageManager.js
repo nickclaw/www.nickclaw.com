@@ -76,3 +76,4 @@ function PageManager() {
 	}
 	self.init();
 }
+

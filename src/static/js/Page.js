@@ -67,3 +67,4 @@ function Page(parent, index, data) {
 	}
 	self.init(parent, index, data);
 }
+
