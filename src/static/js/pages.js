@@ -55,6 +55,11 @@ window['pages'] = {
 					"id": "#projects-window-tiler",
 					"url": "window-tiler",
 					"title": "tiler"
+				},
+				{	
+					"id": "#projects-get-lost",
+					"url": "get-lost",
+					"title": "get lost"
 				}
 			]
 		},

@@ -9,23 +9,16 @@
 	opacity: .5;
 }
 
-#logo + p {
-	text-align:center;
-}
-
 h1, h2, h3, p {
-	color: rgba(0,0,0,.5);
-	//text-shadow: 0px 0px 5px rgba(150, 150, 150, 0.3), 0 0 0 rgba(0, 0, 0, 0.4);
+	color: rgba(0,0,0,.6);
 }
 
 h1 {
 	font-size: 80px;
 }
-
 h2 {
 	font-size: 40px;
 }
-
 h3 {
 	font-size: 20px;
 }
@@ -38,43 +31,14 @@ h3 {
 	opacity: .5;
 }
 
-.sub .content {
-	padding: {
-		left: 0px;
-		right: 0px;
-	}
-	
-
-
-	@media all and (min-width: 900px) {
-		max-width: 700px;
-		margin: {
-			left: auto;
-			right: auto;
-		}
-	}
+.content {
 
 	@media all and (max-width: 899px) {
-		max-width: 800px;
-		margin: {
-			left: auto;
-			right: 0;
-		}
-		padding: {
-			right: 100px;
-		}
+		
 	}
 
 	@media all and (max-width: 825px) {
-		max-width: 825px;
-		margin: {
-			left: 0;
-			right: 0;
-		}
-		padding: {
-			right: 100px;
-			left: 25px;
-		}
+		
 	}
 
 	p {
@@ -287,8 +251,6 @@ p a.internal {
 
 #contact {
 	.images {
-		position: absolute;
-		bottom: 50%;
 		left: 0px;
 		width: 100%;
 
@@ -306,6 +268,7 @@ p a.internal {
 				opacity: 0;
 				pointer-events: none;
 				-webkit-transition: opacity .3s ease;
+				letter-spacing: 3px;
 			}
 
 			&:hover:before /* , &:hover:after */ {
