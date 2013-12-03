@@ -135,6 +135,11 @@ function Site() {
 		}
 	}
 
+	this.onWindowChange = function(evt) {
+		evt.preventDefault();
+		self.scroller.moveTo(self.manager.getCurrent());
+	}
+
 	/**
 	 * initializes the site
 	 */
@@ -150,7 +155,8 @@ function Site() {
 			.on('up', self.pageUp)
 			.on('down', self.pageDown)
 			.on('link', self.onLink)
-			.on('statechange', self.onStateChange);
+			.on('statechange', self.onStateChange)
+			.on('viewchange', self.onWindowChange);
 	}
 	self.init();
 }

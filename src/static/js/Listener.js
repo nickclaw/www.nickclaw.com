@@ -16,7 +16,8 @@ function Listener(manager) {
 		'down': [],
 		'left': [],
 		'right': [],
-		'statechange': []
+		'statechange': [],
+		'viewchange': []
 	};
 
 	var self = this;
@@ -154,6 +155,12 @@ function Listener(manager) {
 		});
 	}
 
+	this.addResizeListener = function() {
+		$(window).on('resize zoom', function(evt) {
+			self.dispatch('viewchange', this, evt);
+		});
+	}
+
 	/**
 	 * initializes the listener
 	 */
@@ -163,6 +170,7 @@ function Listener(manager) {
 		self.addKeyListeners();
 		self.addControlListeners();
 		self.addScrollListeners();
+		self.addResizeListener();
 	}
 	self.init();
 }
