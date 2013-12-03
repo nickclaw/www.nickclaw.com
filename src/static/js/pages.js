@@ -26,6 +26,16 @@ window['pages'] = {
 					"id": "#about-main",
 					"url": "",
 					"title": "about"
+				},
+				{	
+					"id": "#about-more",
+					"url": "more",
+					"title": "more"
+				},
+				{	
+					"id": "#about-experience",
+					"url": "experience",
+					"title": "experience"
 				}
 			]
 		},

@@ -31,11 +31,27 @@ h3 {
 	opacity: .5;
 }
 
-.content {
 
-	@media all and (max-width: 899px) {
-		
+@media all and (max-width: 899px) {
+	.sub {
+		text-align:right !important;
+		.content {
+			max-width: 800px !important;
+			padding-right: 100px;
+		}
 	}
+}
+
+@media all and (max-width: 824px) {
+	.sub {
+		.content {
+			padding-left: 25px;
+			max-width: 825px !important;
+		}
+	}
+}
+
+.content {
 
 	@media all and (max-width: 825px) {
 		
