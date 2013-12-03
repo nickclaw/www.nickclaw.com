@@ -126,10 +126,10 @@ function Site() {
 			}
 
 			// change active indicator
-			$('.nav.vertical [data-index].active').removeClass('active');
-			$('.nav.vertical [data-index = ' + page.up().index + ']').addClass('active');
-			$(page.up().id+' .nav.horizontal [data-index].active').removeClass('active');
-			$(page.up().id+' .nav.horizontal [data-index = ' + page.index + ']').addClass('active');
+			$('body > .nav [data-index].active').removeClass('active');
+			$('body > .nav [data-index = ' + page.up().index + ']').addClass('active');
+			$(page.up().id+' > .nav [data-index].active').removeClass('active');
+			$(page.up().id+' > .nav [data-index = ' + page.index + ']').addClass('active');
 		} else {
 			// 404
 		}
