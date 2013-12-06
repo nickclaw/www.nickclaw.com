@@ -148,7 +148,6 @@ function Site() {
 		self.scroller = new Scroller();
 		self.onStateChange(null, true); // todo no transition
 
-
 		self.listener = new Listener(self.manager)
 			.on('left', self.pageLeft)
 			.on('right', self.pageRight)
@@ -165,6 +164,6 @@ function Site() {
 	self.init();
 }
 
-$(window).ready(function() {
+$(document).ready(function() {
 	site = new Site();
 });

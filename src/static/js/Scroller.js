@@ -23,7 +23,7 @@ function Scroller() {
 		 	'duration': 500,
 		 	'complete': function() {
 		 		isScrolling = false;
-		 		$('.main:not('+page.up().id+') .container').animate({
+		 		$('.main:not('+page.up().id+')').animate({
 		 			'scrollLeft':0
 		 		}, {
 		 			'duration': 0,
