@@ -1,5 +1,17 @@
-.nav, .bounce, #script {
-	display: none;
+.nav .control, .bounce, #script, .unloaded {
+	display: none !important;
+}
+
+.nav.hidden {
+	opacity: 1;
+	
+	&.horizontal {
+		bottom: 0px;
+	}
+
+	&.vertical {
+		right: 0px;
+	}
 }
 
 .arrow {
@@ -17,4 +29,3 @@
 a.internal {
 	// make linkless
 }
-

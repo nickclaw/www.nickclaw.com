@@ -1,0 +1,86 @@
+{#
+ #	recursively creates the containers and pages
+ #	creates all necessary nav bars
+ #	loads the necessary page
+ #	@param data the site data
+ #	@param url the base url
+ #	@param currentPath the path of container ids ending with the page to load
+ #}
+{% macro createLayout(data, url, currentPath) %}
+
+	{% set id = data.id|replace('#','') %}
+	{% set isLoaded = id == currentPath|first %}
+	{% if data.children|default(false) %}
+		<div id="{{ id }}" class="container {{ data.classes }}{% if isLoaded %} loaded {% else %} unloaded {% endif %}">
+
+			{% for child in data.children %}
+				{{ createLayout(child, url|pathify(child.url), currentPath|shift) }}
+			{% endfor %}
+
+			{% if data.children|length > 1 %}
+				{{ createNav(data, url) }}
+			{% endif %}
+		</div>
+	{% else %}
+		<div id="{{ id }}" class=" {{ data.classes }}{% if isLoaded %} loaded {% else %} unloaded {% endif %}" data-internal="{{url}}">
+			{% if isLoaded %}
+				{{ load(id) }}
+			{% endif %}
+		</div>
+	{% endif %}
+{% endmacro %}
+
+
+
+{#
+ #	creates nav bar
+ #	@ param data the parent of the nav bar
+ #	@ param url the parents global url
+ #}
+{% macro createNav(data, url) %}
+	<div class="nav hidden {{data.nav}}">
+		<div class="indicators">
+			<div class="control first"></div>
+			{% for child in data.children %}
+				<a class="indicator internal" data-index="{{loop.index0}}" data-title="{{ child.title }}" href="{{ url|pathify(child.url) }}"></a>
+			{% endfor %}
+			<div class="control last"></div>
+		</div>
+	</div>
+{% endmacro %}
+
+
+
+{#
+ #	loads one page
+ #	@param id the id of the container/the name of the file (NEED TO BE THE SAME)
+ #}
+{% macro load(id) %}
+	{% set location = 'pages/'+id+'.html' %}	
+	{% include location %}
+{% endmacro %}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>nickclaw</title>
+		<link href="/static/css/main.css" rel="stylesheet" type="text/css">
+		<link rel="icon" type="image/png" href="/static/image/favicon.png">
+		<link rel="author" href="https://plus.google.com/110735255984565527909">
+
+		<meta http-equiv="content-Type" content="text/html; charset=utf-8">
+		<meta name="Nick Clawsons personal portfolio.">
+		<meta name="nick clawson nicholas portfolio ecocar eco car university washington biology department informatics info ischool contact github symfony sencha touch">
+		<meta name="ROBOTS" content="NOODP">
+		<!-- TODO learn how to do multiline sed -->
+		<!--COMPILE--><script src="/static/js/external/jquery.min.js"></script><script src="/static/js/external/jquery.history.js"></script><script src="/static/js/pages.js"></script><script src="/static/js/Page.js"></script><script src="/static/js/PageManager.js"></script><script src="/static/js/Scroller.js"></script><script src="/static/js/Listener.js"></script><script src="/static/js/Site.js"></script><!--ENDCOMPILE-->
+
+		<noscript>
+			<link href="/static/css/noscript.css" rel="stylesheet" type="text/css" />
+		</noscript>
+	</head>
+	<body>
+		{{ createLayout(layout, "", path) }}
+	</body>
+</html>

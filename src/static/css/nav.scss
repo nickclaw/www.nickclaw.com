@@ -99,7 +99,7 @@ $iconMargin: 15px;
 
 .nav.horizontal {
 	display: block;
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	width: 100%;
 
@@ -113,9 +113,7 @@ $iconMargin: 15px;
 		}
 
 		*[data-title]:before {
-			/*text-align: left;
-			bottom: 50px;
-			position: absolute;*/
+			display: none !important;
 		}
 
 		*[data-title]:hover:before {

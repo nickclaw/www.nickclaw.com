@@ -126,8 +126,8 @@ function Site() {
 			}
 
 			// change active indicator
-			$('body > .nav [data-index].active').removeClass('active');
-			$('body > .nav [data-index = ' + page.up().index + ']').addClass('active');
+			$('#container > .nav [data-index].active').removeClass('active');
+			$('#container > .nav [data-index = ' + page.up().index + ']').addClass('active');
 			$(page.up().id+' > .nav [data-index].active').removeClass('active');
 			$(page.up().id+' > .nav [data-index = ' + page.index + ']').addClass('active');
 		} else {
@@ -157,6 +157,10 @@ function Site() {
 			.on('link', self.onLink)
 			.on('statechange', self.onStateChange)
 			.on('viewchange', self.onWindowChange);
+
+		$('.sub.page.unloaded').each(function(index, object) {
+			$(object).load(object.getAttribute('data-internal'), {'post': true});
+		});
 	}
 	self.init();
 }

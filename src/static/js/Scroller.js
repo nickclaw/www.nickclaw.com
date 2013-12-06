@@ -32,7 +32,7 @@ function Scroller() {
 		 	}
 		});
 
-		var subContainer = $(page.up().id + ' .container');
+		var subContainer = $(page.up().id);
 		subContainer.animate({
 			'scrollLeft': subContainer.scrollLeft() + $(page.id).offset().left
 		}, {
@@ -50,7 +50,7 @@ function Scroller() {
 		var container = $('#container');
 		container.scrollTop(container.scrollTop() + $(page.up().id).offset().top);
 
-		var subContainer = $(page.up().id + ' .container');
+		var subContainer = $(page.up().id);
 		subContainer.scrollLeft(subContainer.scrollLeft() + $(page.id).offset().left);
 
 		$('.main:not('+ page.up().id +') .container').scrollLeft(0);
