@@ -18,6 +18,11 @@ $iconMargin: 15px;
 			pointer-events: auto;
 			display:block;
 			text-decoration:none;
+			-webkit-transform: translateZ(0);
+
+			&:hover {
+				opacity: .7;
+			}
 		}
 
 		*[data-title]:before {

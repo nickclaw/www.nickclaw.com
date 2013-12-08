@@ -2,13 +2,6 @@
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
 }
 
-#logo {
-	max-width: 100%;
-	max-height: 100%;
-	margin: 0;
-	opacity: .5;
-}
-
 h1, h2, h3, p {
 	color: rgba(0,0,0,.6);
 }
@@ -184,77 +177,7 @@ h2 {
 	text-align:center;
 }
 
-#home-main {
 
-	p {
-		text-align:center !important;
-	}
-}
-
-#projects-main {
-	.image {
-		display: inline-block !important;
-	}
-	.image:nth-child(6n+1) {
-		background-image: url(../image/pages/window-tiler/main.jpg);
-	}
-	.image:nth-child(6n+2) {
-		background-image: url(../image/pages/ecocar/main.jpg);
-	}
-	.image:nth-child(6n+3) {
-		background-image: url(../image/pages/biology/main.jpg);
-	}
-}
-
-#projects-window-tiler {
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/window-tiler/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/window-tiler/screen.jpg);
-	}
-	.image:nth-child(3n+3) {
-		//background-image: ;
-		background-size: 75% 75%;
-	}
-}
-
-#projects-biology {
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/biology/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/biology/folders.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/window-tiler/icon.png);
-		background-size: 75% 75%;
-	}
-}
-
-#projects-ecocar {
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/ecocar/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/ecocar/dial.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/ecocar/dial.jpg);
-	}
-}
-
-#projects-get-lost {
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/get-lost/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/ecocar/main.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/get-lost/settings.jpg);
-	}
-}
 p a.internal {
 
 	text-decoration: none;
@@ -276,43 +199,7 @@ p a.internal {
 	}
 }
 
-#contact {
-	.images {
-		left: 0px;
-		width: 100%;
+.button {
+	-webkit-transform: translateZ(0);
 
-		.button {
-			margin: 30px;
-			color: black;
-			text-decoration: none;
-
-			&:before /*, &:after */ {
-				display:block;
-				position: relative;
-				width: 200px;
-				right: 68px;
-				text-align:center;
-				opacity: 0;
-				pointer-events: none;
-				-webkit-transition: opacity .3s ease;
-				letter-spacing: 3px;
-			}
-
-			&:hover:before /* , &:hover:after */ {
-				opacity: .7;
-			}
-
-			&:before {
-				content: attr(data-text);
-				top: 60px;
-			}
-
-			/*
-			&:after {
-				content: attr(data-title);
-				bottom: 40px;
-			}
-			*/
-		}
-	}
 }

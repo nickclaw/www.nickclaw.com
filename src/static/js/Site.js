@@ -120,11 +120,11 @@ function Site() {
 
 
 			// hide or show navs as needed
-			if (page.index === 0) {
-				$(page.up().id+' > .nav').addClass('hidden');
-			} else {
+			$('.main.page > .nav').addClass('hidden');
+			if (page.index !== 0) {
 				$(page.up().id+' > .nav').removeClass('hidden');
 			}
+
 			if (page.up().index === 0) {
 				$('#container > .nav').addClass('hidden');
 			} else {
@@ -150,19 +150,6 @@ function Site() {
 	 * initializes the site
 	 */
 	this.init = function() {
-		self.manager = new PageManager();
-		self.scroller = new Scroller();
-		self.onStateChange(null, true); // todo no transition
-
-		self.listener = new Listener(self.manager)
-			.on('left', self.pageLeft)
-			.on('right', self.pageRight)
-			.on('up', self.pageUp)
-			.on('down', self.pageDown)
-			.on('link', self.onLink)
-			.on('statechange', self.onStateChange)
-			.on('viewchange', self.onWindowChange);
-
 		$('.page.unloaded').each(function(index, object) {
 			$(object).load('/get', {
 				'path': object.id
@@ -175,6 +162,19 @@ function Site() {
 				}
 			});
 		});
+
+		self.manager = new PageManager();
+		self.scroller = new Scroller();
+		self.onStateChange(null, true); // todo no transition
+
+		self.listener = new Listener(self.manager)
+			.on('left', self.pageLeft)
+			.on('right', self.pageRight)
+			.on('up', self.pageUp)
+			.on('down', self.pageDown)
+			.on('link', self.onLink)
+			.on('statechange', self.onStateChange)
+			.on('viewchange', self.onWindowChange);
 	}
 	self.init();
 }
