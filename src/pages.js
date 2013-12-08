@@ -1,113 +1,95 @@
-module.exports = {
-		"id": "#container",
+module.exports.children = {
+	"container": {
 		"url": "",
-		"title": "",
 		"classes": "vertical",
 		"nav": "vertical",
 
-		"children": [
-			{	
-				"id":"#home",
-				"url":"",
+		"children": {
+			"home": {
+				"url": "",
+				"classes": "horizontal main page",
 				"title": "home",
-				"classes": "horizontal page main",
-				"nav": "horizontal",
 
-				"children": [
-					{	
-						"id": "#home-main",
+				"children": {
+					"main": {
 						"url": "",
 						"title": "nickclaw",
 						"classes": "page sub"
 					}
-				]
-
+				}
 			},
-			{	
-				"id":"#about",
-				"url":"about",
-				"title": "about",
-				"classes": "horizontal page main",
-				"nav": "horizontal",
 
-				"children": [
-					{	
-						"id": "#about-main",
+			"about": {
+				"url": "about",
+				"classes": "horizontal main page",
+				"title": "about",
+				
+				"children": {
+					"main": {
 						"url": "",
 						"title": "about",
 						"classes": "page sub"
 					},
-					{	
-						"id": "#about-more",
-						"url": "more",
-						"title": "more",
+					"now": {
+						"url": "now",
+						"title": "now",
 						"classes": "page sub"
 					},
-					{	
-						"id": "#about-experience",
+					"experience": {
 						"url": "experience",
 						"title": "experience",
 						"classes": "page sub"
 					}
-				]
+				}
 			},
-			{	
-				"id":"#projects",
-				"url":"projects",
+
+			"projects": {
+				"url": "projects",
+				"classes": "horizontal main page",
 				"title": "projects",
-				"classes": "horizontal page main",
-				"nav": "horizontal",
 
-
-				"children": [
-					{	
-						"id": "#projects-main",
+				"children": {
+					"main": {
 						"url": "",
 						"title": "projects",
 						"classes": "page sub"
 					},
-					{	
-						"id": "#projects-ecocar",
+					"ecocar": {
 						"url": "ecocar",
 						"title": "ecocar",
 						"classes": "page sub"
 					},
-					{	
-						"id": "#projects-biology",
+					"biology": {
 						"url": "biology",
-					 	"title":"biology",
-					 	"classes": "page sub"
-					},
-					{	
-						"id": "#projects-window-tiler",
-						"url": "window-tiler",
-						"title": "tiler",
+						"title": "biology",
 						"classes": "page sub"
 					},
-					{	
-						"id": "#projects-get-lost",
+					"window-tiler": {
+						"url": "window-tiler",
+						"title": "window tiler",
+						"classes": "page sub"
+					},
+					"get-lost": {
 						"url": "get-lost",
 						"title": "get lost",
 						"classes": "page sub"
 					}
-				]
+				}
 			},
-			{	
-				
-				"id":"#contact",
-				"url":"contact",
-				"title": "contact",
-				"classes": "horizontal page main",
-				"nav": "horizontal",
 
-				"children": [
-					{	
-						"id": "#contact-main",
+			"contact": {
+				"url": "contact",
+				"classes": "horizontal main page",
+				"title": "contact",
+				
+				"children": {
+					"main": {
 						"url": "",
 						"title": "contact",
 						"classes": "page sub"
 					}
-				]
+				}
 			}
-		]
-	};
+		}
+	}
+}

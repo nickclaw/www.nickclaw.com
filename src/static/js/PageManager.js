@@ -33,7 +33,7 @@ function PageManager() {
 	 * @return {Page} the urls page
 	 */
 	this.route = function(url) {
-		url = url?url:(window.location.origin + window.location.pathname);
+		url = url?url:window.location.pathname;
 		var thePage = null;
 		self.each(function(page) {
 			if (page.url === url || page.url + '/' === url) {
@@ -113,7 +113,7 @@ function PageManager() {
 	 * initializes the manager
 	 */
 	this.init = function() {
-		self.root = new Page(null, null, pages);
+		self.root = new Page(null, null, 'container', pages.container);
 		var current = self.root;
 		while (current.children.length > 0) {
 			current = current.children[0]; // todo replace with defaultIndex

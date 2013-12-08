@@ -1,89 +1,90 @@
-window['pages'] = {
-	"id": "#container",
-	"url": window.location.origin,
+pages = {
+	"container": {
+		"url": "",
+		"classes": "vertical",
 
-	"children": [
-		{	
-			"id":"#home",
-			"url":"",
-
-			"children": [
-				{	
-					"id": "#home-main",
-					"url": "",
-					"title": "nickclaw"
+		"children": {
+			"home": {
+				"url": "",
+				"classes": "horizontal main page",
+				
+				"children": {
+					"main": {
+						"url": "",
+						"title": "nickclaw",
+						"classes": "page sub"
+					}
 				}
-			]
+			},
 
-		},
-		{	
-			"id":"#about",
-			"url":"about",
-			"title":"about",
-
-			"children": [
-				{	
-					"id": "#about-main",
-					"url": "",
-					"title": "about"
-				},
-				{	
-					"id": "#about-more",
-					"url": "more",
-					"title": "more"
-				},
-				{	
-					"id": "#about-experience",
-					"url": "experience",
-					"title": "experience"
+			"about": {
+				"url": "about",
+				"classes": "horizontal main page",
+				
+				"children": {
+					"main": {
+						"url": "",
+						"title": "about",
+						"classes": "page sub"
+					},
+					"now": {
+						"url": "now",
+						"title": "now",
+						"classes": "page sub"
+					},
+					"experience": {
+						"url": "experience",
+						"title": "experience",
+						"classes": "page sub"
+					}
 				}
-			]
-		},
-		{	
-			"id":"#projects",
-			"url":"projects",
-			"title":"projects",
+			},
 
+			"projects": {
+				"url": "projects",
+				"classes": "horizontal main page",
+				
+				"children": {
+					"main": {
+						"url": "",
+						"title": "nickclaw",
+						"classes": "page sub"
+					},
+					"ecocar": {
+						"url": "ecocar",
+						"title": "ecocar",
+						"classes": "page sub"
+					},
+					"biology": {
+						"url": "biology",
+						"title": "biology",
+						"classes": "page sub"
+					},
+					"window-tiler": {
+						"url": "window-tiler",
+						"title": "window tiler",
+						"classes": "page sub"
+					},
+					"get-lost": {
+						"url": "get-lost",
+						"title": "get lost",
+						"classes": "page sub"
+					}
+				}
+			},
 
-			"children": [
-				{	
-					"id": "#projects-main",
-					"url": "",
-					"title": "projects"
-				},
-				{	
-					"id": "#projects-ecocar",
-					"url": "ecocar",
-					"title": "ecocar"
-				},
-				{	
-					"id": "#projects-biology",
-					"url": "biology",
-				 	"title":"biology"
-				},
-				{	
-					"id": "#projects-window-tiler",
-					"url": "window-tiler",
-					"title": "tiler"
-				},
-				{	
-					"id": "#projects-get-lost",
-					"url": "get-lost",
-					"title": "get lost"
+			"contact": {
+				"url": "contact",
+				"classes": "horizontal main page",
+				
+				"children": {
+					"main": {
+						"url": "",
+						"title": "contact",
+						"classes": "page sub"
+					}
 				}
-			]
-		},
-		{	
-			
-			"id":"#contact",
-			"url":"contact",
-			"children": [
-				{	
-					"id": "#contact-main",
-					"url": "",
-					"title": "contact"
-				}
-			]
+			}
 		}
-	]
-};
+	}
+}

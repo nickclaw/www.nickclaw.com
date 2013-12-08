@@ -2,7 +2,7 @@
  * Represents one page
  * @constructor
  */
-function Page(parent, index, data) {
+function Page(parent, index, name, data) {
 	/**
 	 * page id (format: '#abc')
 	 * @type {string}
@@ -28,22 +28,22 @@ function Page(parent, index, data) {
 	this.parent = null;
 
 	/**
-	 * this pages index in it's parent
-	 * @type {?number}
-	 */
-	this.index = null;
-
-	/**
 	 * this pages children
 	 * @type {Array.<Page>}
 	 */
 	this.children = [];
 
 	/**
+	 * this pages index in it's parent
+	 * @type {?number}
+	 */
+	this.index = null;
+
+	/**
 	 * the pages navvar if it has one
 	 * @type {?Object}
 	 */
-	this.nav = null;
+	//this.nav = null;
 
 	var self = this;
 
@@ -117,20 +117,21 @@ function Page(parent, index, data) {
 	 * @param {number} index the index of the page
 	 * @param {Object} data the pages data
 	 */
-	this.init = function(parent, index, data) {
-		self.id = data.id || "";
+	this.init = function(parent, index, name, data) {
+		self.id = (parent?parent.id + '_':'#') + name;
 		self.title = data.title || "";
 		self.url = (parent?parent.url:'') + (parent && data.url?'/':'') + (data.url?data.url:'');
 		self.parent = parent;
 		self.index = index;
-		self.nav = $(data.id+' > .nav')
+		//self.nav = $(data.id+' > .nav')
 
 		if (data.children !== undefined) {
-			$(data.children).each(function(index, child) {
-				self.children.push(new Page(self, index, child));
+			var index = 0;
+			$.each(data.children, function(key, child) {
+				self.children.push(new Page(self, index++, key, child));
 			});
 		}
 	}
-	self.init(parent, index, data);
+	self.init(parent, index, name, data);
 }
 

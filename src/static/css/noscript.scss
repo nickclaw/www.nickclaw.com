@@ -4,14 +4,6 @@
 
 .nav.hidden {
 	opacity: 1;
-	
-	&.horizontal {
-		bottom: 0px;
-	}
-
-	&.vertical {
-		right: 0px;
-	}
 }
 
 .arrow {
@@ -20,10 +12,18 @@
 
 .container.vertical {
 	overflow-y: scroll;
+
+	.nav.hidden {
+		right: 0px !important;
+	}
 }
 
 .container.horizontal {
 	overflow-x:scroll;
+
+	.nav.hidden {
+		bottom: 0px !important;
+	}
 }
 
 a.internal {

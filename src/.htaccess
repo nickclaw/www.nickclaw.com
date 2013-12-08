@@ -1,22 +1,5 @@
-# Enable rewrite engine 
-Options +FollowSymLinks 
-RewriteEngine On 
- 
-# Redirect internally all URIs to /index.php 
-RewriteRule ^(projects|about|contact) /index.html [L]
+Options +FollowSymLinks
+RewriteEngine On
 
-
-# Let gzip happen
-AddEncoding gzip .jsgz .cssgz .htmlgz .datagz
-AddType application/x-javascript .jsgz
-AddType text/css .cssgz
-AddType text/html .htmlgz
-AddType text/plain .datagz
-
-RewriteEngine on
-# If client accepts compressed files
-RewriteCond %{HTTP:Accept-Encoding} gzip
-# and if compressed file exists
-RewriteCond %{REQUEST_FILENAME}gz -f
-# send .html.gz instead of .html
-RewriteRule ^(.+)\.(html|css|js|data)$ $1.$2gz [L]
+RewriteCond %{SERVER_PORT} ^80$
+RewriteRule ^ http://%{HTTP_HOST}:8080%{REQUEST_URI} [P]

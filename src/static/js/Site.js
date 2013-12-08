@@ -31,7 +31,8 @@ function Site() {
 	 * @param {Page} page
 	 */
 	this.goToPage = function(page) {
-		History.pushState(null, page.title, page.url);
+		console.log('going to '+page.url);
+		History.pushState(null, page.title, window.location.origin + (page.url?page.url:'/'));
 	}
 
 	/**
@@ -40,6 +41,7 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageUp = function(evt) {
+		console.log('page up');
 		var newPage = self.manager.getUp();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -52,6 +54,7 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageDown = function(evt) {
+		console.log('page down');
 		var newPage = self.manager.getDown();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -64,6 +67,7 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageLeft = function(evt) {
+		console.log('page left');
 		var newPage = self.manager.getLeft();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -76,6 +80,7 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageRight = function(evt) {
+		console.log('page right');
 		var newPage = self.manager.getRight();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -88,7 +93,7 @@ function Site() {
 	 * @this {?}
 	 */
 	this.onLink = function(evt) {
-		var newPage = self.manager.route(this.href);
+		var newPage = self.manager.route(this.pathname);
 		if (newPage) {
 			self.goToPage(newPage);
 		} else {
@@ -103,6 +108,7 @@ function Site() {
 	 * @this {?}
 	 */
 	this.onStateChange = function(evt, moveTo) {
+		console.log(window.location.pathname);
 		var page = self.manager.route();
 		if (page) {
 			self.manager.setCurrent(page);
@@ -115,14 +121,14 @@ function Site() {
 
 			// hide or show navs as needed
 			if (page.index === 0) {
-				$(page.up().id+' .nav.horizontal').addClass('hidden');
+				$(page.up().id+' > .nav').addClass('hidden');
 			} else {
-				$(page.up().id+' .nav.horizontal').removeClass('hidden');
+				$(page.up().id+' > .nav').removeClass('hidden');
 			}
 			if (page.up().index === 0) {
-				$('.nav.vertical').addClass('hidden');
+				$('#container > .nav').addClass('hidden');
 			} else {
-				$('.nav.vertical').removeClass('hidden');
+				$('#container > .nav').removeClass('hidden');
 			}
 
 			// change active indicator
@@ -157,8 +163,17 @@ function Site() {
 			.on('statechange', self.onStateChange)
 			.on('viewchange', self.onWindowChange);
 
-		$('.sub.page.unloaded').each(function(index, object) {
-			$(object).load(object.getAttribute('data-internal'), {'post': true});
+		$('.page.unloaded').each(function(index, object) {
+			$(object).load('/get', {
+				'path': object.id
+			}, function handle(responseText, status, xhr) {
+				if (xhr.status === 200) {
+					$(this).removeClass('unloaded')
+						.addClass('loaded')
+				} else {
+					$(this).addClass('error');
+				}
+			});
 		});
 	}
 	self.init();

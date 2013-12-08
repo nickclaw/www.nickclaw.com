@@ -55,7 +55,7 @@ function Listener(manager) {
 	 * adds listeners to all events
 	 */
 	this.addLinkListeners = function() {
-		$('a.internal').click(function(evt) {
+		$('#container').delegate('a.internal', 'click', function(evt) {
 			evt.preventDefault();
 			self.dispatch('link', this, evt);
 		});
@@ -92,16 +92,14 @@ function Listener(manager) {
 	 * adds listeners to arrows
 	 */
 	this.addControlListeners = function() {
-		$('.down.control').click(function(evt) {
+		$('#container')
+		  .delegate('.down.control, .vertical > .nav .last.control', 'click', function(evt) {
 			self.dispatch('down', this, evt);
-		});
-		$('.up.control').click(function(evt) {
+		}).delegate('.up.control, .vertical > .nav .first.control', 'click', function(evt) {
 			self.dispatch('up', this, evt);
-		});
-		$('.right.control').click(function(evt) {
+		}).delegate('.right.control, .horizontal > .nav .last.control', 'click', function(evt) {
 			self.dispatch('right', this, evt);
-		});
-		$('.left.control').click(function(evt) {
+		}).delegate('.left.control, .horizontal > .nav .first.control', 'click', function(evt) {
 			self.dispatch('left', this, evt);
 		});
 	}
@@ -110,8 +108,7 @@ function Listener(manager) {
 	 * adds listener to scroll movements
 	 */
 	this.addScrollListeners = function() {
-		var mainSelector = self.manager.root.children.map(function(child) {return child.id;}).join(', ');
-		$(mainSelector).on('mousewheel touchmove', function(evt) {
+		$('#container').delegate('.page.main', 'mousewheel touchmove', function(evt) {
 			// stop event
 			evt.preventDefault();
 
@@ -133,8 +130,7 @@ function Listener(manager) {
 		});
 
 		$.each(self.manager.root.children, function(index, page) {
-			var selector = page.children.map(function(child){return child.id;}).join(', ');
-			$(selector).on('mousewheel touchmove', function(evt) {
+			$('#container').delegate('.page.sub', 'mousewheel touchmove', function(evt) {
 				evt.preventDefault();
 				if (!isScrolling) {
 					var dx = evt.originalEvent.wheelDeltaX; // change in x

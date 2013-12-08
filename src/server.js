@@ -14,40 +14,91 @@ swig.setFilter('shift', function(input) {
 	return input.slice(1);
 });
 swig.setFilter('length', function(input) {
-	return input.length;
-});
-swig.setFilter('pathify', function(value, add) {
-	if (add || !value) {
-		return value + '/' + add;
-	} else {
-		return value;
+	try {
+		return Object.keys(input).length;
+	} catch (e) {
+		return -1;
 	}
+});
+swig.setFilter('joinify', function(value, add, glue) {
+	return value + (value && add?glue:'') + add;
 });
 
 // serve static content
 app.use(express.compress());
 app.use('/static', express.static(__dirname + '/static'));
 
-function getPath(path) {
-	var paths = path.split('/');
-	paths[0] = 'container';
-	paths[1] = paths[1] || 'home';
-	paths[2] = paths[2] || 'main';
-	paths[2] = paths[1]+ '-' + paths[2];
-	return paths;
+// accept post data
+app.use(express.bodyParser());
+
+function checkPath(path) {
+	var current = pages.children;
+	for (var i = 0; i < path.length; i++) {
+		if (current[path[i]]) {
+			current = current[path[i]].children;
+		} else {
+			return false;
+		}
+	}
+	return true;
 }
 
-app.get("*", function(req, res) {
-	var path = getPath(req.path);
-	res.render('template', {
-		'layout': pages,
-		'path': path
-	});
+app.get("/", function(req, res) {
+	var path = ["container", "home", "main"];
+	if (checkPath(path)) {
+		res.render('template', {
+			'mainLayout': pages,
+			'path': ["container", "home", "main"]
+		});
+	} else {
+		res.send(404);
+	}
 });
 
-app.post("*", function(req, res) {
-	var path = getPath(req.path);
-	res.render('pages/'+path[2]+'.html');
+app.get("/:main", function(req, res) {
+	console.log(pages);
+	console.log(' ');
+	var path = ["container", req.params.main, "main"];
+	if (checkPath(path)) {
+		res.render('template', {
+			'mainLayout': pages,
+			'path': ["container", req.params.main, "main"]
+		});
+	} else {
+		res.send(404);
+	}
+});
+
+app.get("/:main/:sub", function(req, res) {
+	var path = ["container", req.params.main, req.params.sub];
+	if (checkPath(path)) {
+		res.render('template', {
+			'mainLayout': pages,
+			'path': ["container", req.params.main, req.params.sub]
+		});
+	} else {
+		res.send(404);
+	}
+});
+
+app.post("/get", function(req, res) {
+	var path = req.body.path.split('_');
+	if (checkPath(path)) {
+		if (path.length === 3) {
+			res.render(path.join('/'));
+		} else if (path.length === 2) {
+			console.log(pages.children[path[0]].children[path[1]]);
+			console.log(" ");
+			res.render('main_page', {
+				'mainLayout': pages.children[path[0]].children[path[1]],
+				'u': pages.children[path[0]].children[path[1]].url,
+				'i': path[0]+'_'+path[1],
+				'path': []
+			});
+		}
+	} else {
+		res.send(404);
+	}
 });
 
 app.listen(8080);

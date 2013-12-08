@@ -1,66 +1,5 @@
-{#
- #	recursively creates the containers and pages
- #	creates all necessary nav bars
- #	loads the necessary page
- #	@param data the site data
- #	@param url the base url
- #	@param currentPath the path of container ids ending with the page to load
- #}
-{% macro createLayout(data, url, currentPath) %}
-
-	{% set id = data.id|replace('#','') %}
-	{% set isLoaded = id == currentPath|first %}
-	{% if data.children|default(false) %}
-		<div id="{{ id }}" class="container {{ data.classes }}{% if isLoaded %} loaded {% else %} unloaded {% endif %}">
-
-			{% for child in data.children %}
-				{{ createLayout(child, url|pathify(child.url), currentPath|shift) }}
-			{% endfor %}
-
-			{% if data.children|length > 1 %}
-				{{ createNav(data, url) }}
-			{% endif %}
-		</div>
-	{% else %}
-		<div id="{{ id }}" class=" {{ data.classes }}{% if isLoaded %} loaded {% else %} unloaded {% endif %}" data-internal="{{url}}">
-			{% if isLoaded %}
-				{{ load(id) }}
-			{% endif %}
-		</div>
-	{% endif %}
-{% endmacro %}
-
-
-
-{#
- #	creates nav bar
- #	@ param data the parent of the nav bar
- #	@ param url the parents global url
- #}
-{% macro createNav(data, url) %}
-	<div class="nav hidden {{data.nav}}">
-		<div class="indicators">
-			<div class="control first"></div>
-			{% for child in data.children %}
-				<a class="indicator internal" data-index="{{loop.index0}}" data-title="{{ child.title }}" href="{{ url|pathify(child.url) }}"></a>
-			{% endfor %}
-			<div class="control last"></div>
-		</div>
-	</div>
-{% endmacro %}
-
-
-
-{#
- #	loads one page
- #	@param id the id of the container/the name of the file (NEED TO BE THE SAME)
- #}
-{% macro load(id) %}
-	{% set location = 'pages/'+id+'.html' %}	
-	{% include location %}
-{% endmacro %}
-
-
+{% import 'imports.html' as fn %}
+{% spaceless %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -81,6 +20,7 @@
 		</noscript>
 	</head>
 	<body>
-		{{ createLayout(layout, "", path) }}
+		{{ fn.createLayout(mainLayout, "", "", path) }}
 	</body>
 </html>
+{% endspaceless %}

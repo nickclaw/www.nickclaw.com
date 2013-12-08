@@ -11,12 +11,13 @@ function Scroller() {
 	 * @param {Page} page
 	 */
 	this.scrollTo = function(page) {
+		console.log('scrolling to '+page.id);
 		isScrolling = true;
 		didBounce = false;
 		
 		var container = $('#container');
 		container.animate({
-			'scrollTop': container.scrollTop() + $(page.up().id).offset().top
+			'scrollTop': container.scrollTop() + $(page.up().id).offset().top + 1
 		}, {
 			'queue': false,
 	 		'easing': 'swing',
@@ -48,7 +49,7 @@ function Scroller() {
 	 */
 	this.moveTo = function(page) {
 		var container = $('#container');
-		container.scrollTop(container.scrollTop() + $(page.up().id).offset().top);
+		container.scrollTop(container.scrollTop() + $(page.up().id).offset().top + 1);
 
 		var subContainer = $(page.up().id);
 		subContainer.scrollLeft(subContainer.scrollLeft() + $(page.id).offset().left);
