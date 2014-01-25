@@ -1,6 +1,10 @@
 /**
  * Represents one page
  * @constructor
+ * @param {?Page} parent
+ * @param {?number} index
+ * @param {string} name
+ * @param {Object} data
  */
 function Page(parent, index, name, data) {
 	/**
@@ -38,12 +42,6 @@ function Page(parent, index, name, data) {
 	 * @type {?number}
 	 */
 	this.index = null;
-
-	/**
-	 * the pages navvar if it has one
-	 * @type {?Object}
-	 */
-	//this.nav = null;
 
 	var self = this;
 
@@ -114,7 +112,8 @@ function Page(parent, index, name, data) {
 	/** 
 	 * initializes the page
 	 * @param {?Page} parent the parent page
-	 * @param {number} index the index of the page
+	 * @param {?number} index the index of the page
+	 * @param {string} name the pages name
 	 * @param {Object} data the pages data
 	 */
 	this.init = function(parent, index, name, data) {

@@ -1,13 +1,13 @@
 var express = require('express'),
 	swig = require('swig'),
-	pages = require('./pages.js');
+	pages = require('./src/static/js/pages.js');
 
 var app = express();
 
 // swig stuff
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/build/views');
 app.set('view_cache', false);
 swig.setDefaults({ cache: false });
 swig.setFilter('shift', function(input) {
@@ -26,7 +26,7 @@ swig.setFilter('joinify', function(value, add, glue) {
 
 // serve static content
 app.use(express.compress());
-app.use('/static', express.static(__dirname + '/static'));
+app.use('/static', express.static(__dirname + '/build/static'));
 
 // accept post data
 app.use(express.bodyParser());
@@ -56,8 +56,6 @@ app.get("/", function(req, res) {
 });
 
 app.get("/:main", function(req, res) {
-	console.log(pages);
-	console.log(' ');
 	var path = ["container", req.params.main, "main"];
 	if (checkPath(path)) {
 		res.render('template', {
@@ -87,8 +85,6 @@ app.post("/get", function(req, res) {
 		if (path.length === 3) {
 			res.render(path.join('/'));
 		} else if (path.length === 2) {
-			console.log(pages.children[path[0]].children[path[1]]);
-			console.log(" ");
 			res.render('main_page', {
 				'mainLayout': pages.children[path[0]].children[path[1]],
 				'u': pages.children[path[0]].children[path[1]].url,
@@ -102,5 +98,7 @@ app.post("/get", function(req, res) {
 });
 
 app.listen(8080);
+console.log("");
 console.log('listening on port 8080');
 console.log('current directory:' + __dirname);
+

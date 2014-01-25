@@ -66,18 +66,6 @@ h2 {
 	#instructions {
 		text-align:center;
 	}
-
-	#downArrow {
-		max-width: 20%;
-		max-height: 20%;
-		text-align: center;
-
-		margin: {
-			top: 10%;
-			left: auto;
-			right: auto;
-		}
-	}
 }
 
 	.column {
@@ -114,69 +102,6 @@ h2 {
 			padding-left: 10px;
 		}
 	}
-
-.arrowRightContainer {
-	display: table-cell;
-	vertical-align:middle;
-	text-align: center;
-
-	.arrow.right {
-		max-width: 40%;
-		max-height: 40%;
-	}
-}
-
-.arrow {
-	-webkit-transition: opacity .3s ease, bottom .1s ease, right .1s ease;
-	opacity: .5;
-	max-width: 100%;
-	max-height: 100%;
-	width: auto;
-	height: auto;
-	position: relative;
-	cursor: pointer;
-
-	&:hover {
-		opacity: .5;
-	}
-
-	&.down:hover {
-		//bottom: -3px;
-	}
-
-	&.right:hover {
-		//right: -3px;
-	}
-}
-
-.image {
-	background: {
-		size: cover;
-		repeat: no-repeat;
-		color: white;
-		position: 50%;
-	}
-	border-radius: 100%;
-	display: inline-block;
-	box-shadow: 0px 5px 10px rgba(0,0,0,.3) inset, 0px 5px 10px rgba(0,0,0,.3);
-}
-
-.image.big {
-	width: 90%;
-	height: 0px;
-	padding-top: 90%;
-}
-
-.image.small {
-	width: 35%;
-	height: 0px;
-	padding-top: 35%;
-}
-
-.images {
-	text-align:center;
-}
-
 
 p a.internal {
 

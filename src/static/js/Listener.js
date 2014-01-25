@@ -93,9 +93,9 @@ function Listener(manager) {
 	 */
 	this.addControlListeners = function() {
 		$('#container')
-		  .delegate('.down.control, .vertical > .nav .last.control', 'click', function(evt) {
+		  .delegate('.down.control, > .nav .last.control', 'click', function(evt) {
 			self.dispatch('down', this, evt);
-		}).delegate('.up.control, .vertical > .nav .first.control', 'click', function(evt) {
+		}).delegate('.up.control, > .nav .first.control', 'click', function(evt) {
 			self.dispatch('up', this, evt);
 		}).delegate('.right.control, .horizontal > .nav .last.control', 'click', function(evt) {
 			self.dispatch('right', this, evt);
@@ -119,9 +119,9 @@ function Listener(manager) {
 
 				if (current.up().id === '#'+this.id) {
 					if (Math.abs(dy) > Math.abs(dx)) {
-						if (dy < 0) {
+						if (dy < -20) {
 							self.dispatch('down', this, evt);
-						} else if (dy > 0) {
+						} else if (dy > 20) {
 							self.dispatch('up', this, evt);
 						}
 					}
@@ -129,25 +129,23 @@ function Listener(manager) {
 			}
 		});
 
-		$.each(self.manager.root.children, function(index, page) {
-			$('#container').delegate('.page.sub', 'mousewheel touchmove', function(evt) {
-				evt.preventDefault();
-				if (!isScrolling) {
-					var dx = evt.originalEvent.wheelDeltaX; // change in x
-					var dy = evt.originalEvent.wheelDeltaY; // change in y
-					var current = self.manager.getCurrent(); // get current page
+		$('#container').delegate('.page.sub', 'mousewheel touchmove', function(evt) {
+			evt.preventDefault();
+			if (!isScrolling) {
+				var dx = evt.originalEvent.wheelDeltaX; // change in x
+				var dy = evt.originalEvent.wheelDeltaY; // change in y
+				var current = self.manager.getCurrent(); // get current page
 
-					if (current.id === '#'+this.id) {
-						if (Math.abs(dy) < Math.abs(dx)) {
-							if (dx < 0) {
-								self.dispatch('right', this, evt);
-							} else if (dx > 0) {
-								self.dispatch('left', this, evt);
-							}
+				if (current.id === '#'+this.id) {
+					if (Math.abs(dy) < Math.abs(dx)) {
+						if (dx < -20) {
+							self.dispatch('right', this, evt);
+						} else if (dx > 20) {
+							self.dispatch('left', this, evt);
 						}
 					}
 				}
-			});
+			}
 		});
 	}
 

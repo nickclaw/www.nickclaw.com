@@ -11,14 +11,31 @@
 		<meta name="Nick Clawsons personal portfolio.">
 		<meta name="nick clawson nicholas portfolio ecocar eco car university washington biology department informatics info ischool contact github symfony sencha touch">
 		<meta name="ROBOTS" content="NOODP">
-		<!-- TODO learn how to do multiline sed -->
-		<!--COMPILE--><script src="/static/js/external/jquery.min.js"></script><script src="/static/js/external/jquery.history.js"></script><script src="/static/js/pages.js"></script><script src="/static/js/Page.js"></script><script src="/static/js/PageManager.js"></script><script src="/static/js/Scroller.js"></script><script src="/static/js/Listener.js"></script><script src="/static/js/Site.js"></script><!--ENDCOMPILE-->
 
+		<!-- TODO learn how to do multiline sed -->
 		<noscript>
 			<link href="/static/css/noscript.css" rel="stylesheet" type="text/css" />
 		</noscript>
 	</head>
 	<body>
 		{{ fn.createLayout(mainLayout, "", "", path) }}
+
+		<!-- deferred loading google style -->
+		<script>
+			function downloadJSAtOnload() {
+				var element = document.createElement("script");
+				element.src = "/static/js/script.js";
+				document.body.appendChild(element);
+			}
+
+			if (window.addEventListener) {
+				window.addEventListener("load", downloadJSAtOnload, false);
+			}
+			else if (window.attachEvent) {
+				window.attachEvent("onload", downloadJSAtOnload);
+			} else {
+				window.onload = downloadJSAtOnload;
+			}
+		</script>
 	</body>
 </html>

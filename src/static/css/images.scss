@@ -1,0 +1,37 @@
+.image {
+	background: {
+		size: cover;
+		repeat: no-repeat;
+		color: white;
+		position: 50%;
+	}
+	border-radius: 100%;
+	display: inline-block;
+	box-shadow: 0px 5px 10px rgba(0,0,0,.3) inset, 0px 5px 10px rgba(0,0,0,.3);
+	height: 0px;
+
+
+	&.max {
+		width: 90%;
+		padding-top: 90%;
+	}
+
+	&.big {
+		width: 75%;
+		padding-top: 75%;
+	}
+
+	&.med {
+		width: 40%;
+		padding-top: 40%;
+	}
+
+	&.min {
+		width: 20%;
+		padding-top: 20%;
+	}
+}
+
+.images {
+	text-align:center;
+}

@@ -9,7 +9,7 @@
 {% macro createLayout(layout, url, id, currentPath) %}
 	
 	{% if layout.children|length > 1 %}
-		{{ createNav(layout, url) }}
+		{{ createNav(layout, url, currentPath[0]) }}
 	{% endif %}
 
 	{% for name, data in layout.children %}
@@ -40,12 +40,12 @@
  #	@ param data the parent of the nav bar
  #	@ param url the parents global url
  #}
-{% macro createNav(data, u) %}
+{% macro createNav(data, u, selected) %}
 	<div class="nav hidden">
 		<div class="indicators">
 			<div class="control first"></div>
 			{% for name,child in data.children %}
-				<a class="indicator internal" data-index="{{loop.index0}}" data-title="{{ child.title }}" href="/{{ u|joinify(child.url, '/') }}"></a>
+				<a class="indicator internal {% if child.url == selected or child.url == "" and selected == "main" %}active{% endif %}" data-index="{{loop.index0}}" data-title="{{ child.title }}" href="/{{ u|joinify(child.url, '/') }}"></a>
 			{% endfor %}
 			<div class="control last"></div>
 		</div>

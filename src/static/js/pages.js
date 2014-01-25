@@ -1,13 +1,15 @@
-pages = {
+var object = {
 	"container": {
 		"url": "",
 		"classes": "vertical",
+		"nav": "vertical",
 
 		"children": {
 			"home": {
 				"url": "",
 				"classes": "horizontal main page",
-				
+				"title": "home",
+
 				"children": {
 					"main": {
 						"url": "",
@@ -20,6 +22,7 @@ pages = {
 			"about": {
 				"url": "about",
 				"classes": "horizontal main page",
+				"title": "about",
 				
 				"children": {
 					"main": {
@@ -43,11 +46,12 @@ pages = {
 			"projects": {
 				"url": "projects",
 				"classes": "horizontal main page",
-				
+				"title": "projects",
+
 				"children": {
 					"main": {
 						"url": "",
-						"title": "nickclaw",
+						"title": "projects",
 						"classes": "page sub"
 					},
 					"ecocar": {
@@ -76,6 +80,7 @@ pages = {
 			"contact": {
 				"url": "contact",
 				"classes": "horizontal main page",
+				"title": "contact",
 				
 				"children": {
 					"main": {
@@ -87,4 +92,7 @@ pages = {
 			}
 		}
 	}
-}
+};
+
+if (typeof window !== 'undefined') window.pages = object;
+if (typeof module !== 'undefined') module.exports.children = object;

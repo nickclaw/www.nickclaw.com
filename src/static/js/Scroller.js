@@ -17,7 +17,7 @@ function Scroller() {
 		
 		var container = $('#container');
 		container.animate({
-			'scrollTop': container.scrollTop() + $(page.up().id).offset().top + 1
+			'scrollTop': container.scrollTop() + $(page.up().id).offset().top
 		}, {
 			'queue': false,
 	 		'easing': 'swing',
@@ -39,7 +39,7 @@ function Scroller() {
 		}, {
 			'easing': 'swing',
 			'queue': false,
-			'duration': 400
+			'duration': 500
 		});
 	}
 

@@ -1,0 +1,34 @@
+.arrow {
+	-webkit-transition: opacity .3s ease;
+	opacity: .5;
+	display: inline-block;
+
+	width: 20%;
+	height: 0px;
+	padding-bottom: 20%;
+
+	background: {
+		size: contain;
+		repeat: no-repeat;
+	}
+
+	&:hover {
+		opacity: .7;
+	}
+
+	&.up {
+		background-image: url(../image/arrows/arrow_large_skinny_up.png);
+	}
+
+	&.down {
+		background-image: url(../image/arrows/arrow_large_skinny_down.png);
+	}
+
+	&.left {
+		background-image: url(../image/arrows/arrow_large_skinny_left.png);
+	}
+
+	&.right {
+		background-image: url(../image/arrows/arrow_large_skinny_right.png);
+	}
+}
