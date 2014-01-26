@@ -9,3 +9,5 @@ src/static/js/external/*
 
 node_modules
 *.log
+
+*.psd

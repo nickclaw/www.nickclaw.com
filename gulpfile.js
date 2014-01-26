@@ -5,7 +5,8 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat')
 	es = require('event-stream')
 	imagemin = require('gulp-imagemin')
-	clean = require('gulp-clean');
+	clean = require('gulp-clean'),
+	prefix = require('gulp-autoprefixer');
 
 // compile everything for production
 gulp.task('default', function(){
@@ -75,6 +76,7 @@ gulp.task('css', function() {
 		includePaths : ['./src/static/css'],
 		outputStyle : 'compressed'
 	}))
+	.pipe(prefix('> 1%','last 3 versions'))
 	.pipe(gulp.dest('./build/static/css/'))
 });
 

@@ -78,14 +78,14 @@ var object = {
 						"title": "projects",
 						"classes": "page sub"
 					},
-					"sockdraw": {
-						"url": "sockdraw",
-						"title": "sockdraw",
-						"classes": "page sub"
-					},
 					"window-tiler": {
 						"url": "window-tiler",
 						"title": "window tiler",
+						"classes": "page sub"
+					},
+					"sockdraw": {
+						"url": "sockdraw",
+						"title": "sockdraw",
 						"classes": "page sub"
 					},
 					"gccui": {

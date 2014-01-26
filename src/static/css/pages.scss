@@ -20,7 +20,7 @@
 		background-image: url(../image/pages/biology/folders.jpg);
 	}
 	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/window-tiler/icon.png);
+		background-image: url(../image/pages/biology/exam.png);
 		background-size: 75% 75%;
 	}
 }
@@ -33,7 +33,7 @@
 		background-image: url(../image/pages/ecocar/dial.jpg);
 	}
 	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/ecocar/dial.jpg);
+		background-image: url(../image/pages/ecocar/demo.jpg);
 	}
 }
 
@@ -53,6 +53,20 @@
 	}
 }
 
+#container_projects_sockdraw {
+	.image:nth-child(3n+1) {
+		background-color: rgb(241,241,241);
+		background-image: url(../image/pages/sockdraw/main.png);
+		background-position: 0px 20px;
+	}
+	.image:nth-child(3n+2) {
+		background-image: url(../image/pages/sockdraw/color.png);
+	}
+	.image:nth-child(3n+3) {
+		background-image: url(../image/pages/sockdraw/dual.png);
+	}
+}
+
 #container_projects_window-tiler {
 	.image:nth-child(3n+1) {
 		background-image: url(../image/pages/window-tiler/main.jpg);
@@ -61,8 +75,22 @@
 		background-image: url(../image/pages/window-tiler/screen.jpg);
 	}
 	.image:nth-child(3n+3) {
-		//background-image: ;
+		background-image: url(../image/pages/window-tiler/icon.png);
 		background-size: 75% 75%;
+	}
+}
+
+#container_projects_gccui {
+	.image:nth-child(3n+1) {
+		background-color: rgb(241,241,241);
+		background-image: url(../image/pages/gccui/main.png);
+		background-position: 0px 20px;
+	}
+	.image:nth-child(3n+2) {
+		background-image: url(../image/pages/gccui/compiled.png);
+	}
+	.image:nth-child(3n+3) {
+		background-image: url(../image/pages/gccui/code.png);
 	}
 }
 
@@ -71,10 +99,11 @@
 		background-image: url(../image/pages/get-lost/main.jpg);
 	}
 	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/ecocar/main.jpg);
+		background-image: url(../image/pages/get-lost/settings.jpg);
 	}
 	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/get-lost/settings.jpg);
+		background-image: url(../image/pages/get-lost/icon.png);
+		background-size: 50%;
 	}
 }
 
@@ -97,7 +126,7 @@
 				text-align:center;
 				opacity: 0;
 				pointer-events: none;
-				-webkit-transition: opacity .3s ease;
+				transition: opacity .3s ease;
 			}
 
 			&:hover:before /* , &:hover:after */ {

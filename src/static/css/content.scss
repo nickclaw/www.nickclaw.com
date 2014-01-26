@@ -9,6 +9,7 @@ h1, h2, h3, p {
 h1 {
 	font-size: 50px;
 	line-height: 55px;
+	margin-bottom: 5px;
 }
 h2 {
 	font-size: 35px;
@@ -112,9 +113,10 @@ p a {
 	text-decoration: none;
 	font-style: italic;
 	color: black;
+	opacity: .6;
 }
 
 .button {
-	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
 
 }

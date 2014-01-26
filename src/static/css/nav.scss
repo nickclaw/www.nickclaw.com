@@ -1,8 +1,8 @@
 $iconMargin: 15px;
 
 .nav {
-	-webkit-user-select: none;
-	-webkit-transition: opacity .3s ease, right .3s ease, bottom .3s ease;
+	user-select: none;
+	transition: opacity .3s ease, right .3s ease, bottom .3s ease;
 	pointer-events: none;
 	z-index: 2;
 
@@ -14,11 +14,11 @@ $iconMargin: 15px;
 			height: 36px;
 			cursor: pointer;
 			opacity: .5;
-			-webkit-transition: opacity .2s ease, background-color .3s ease;
+			transition: opacity .2s ease, background-color .3s ease;
 			pointer-events: auto;
 			display:block;
 			text-decoration:none;
-			-webkit-transform: translateZ(0);
+			transform: translateZ(0);
 
 			&:hover {
 				opacity: .7;
@@ -31,7 +31,7 @@ $iconMargin: 15px;
 			position: absolute;
 			overflow: visible;
 			color: rgba(0,0,0,0);
-			-webkit-transition: color .5s ease;
+			transition: color .5s ease;
 			width: 100px;
 			font-size: 14pt;
 			pointer-events: none;
