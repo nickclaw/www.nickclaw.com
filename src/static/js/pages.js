@@ -30,14 +30,38 @@ var object = {
 						"title": "about",
 						"classes": "page sub"
 					},
+					"me": {
+						"url": "me",
+						"title": "me",
+						"classes": "page sub"
+					},
 					"now": {
 						"url": "now",
 						"title": "now",
 						"classes": "page sub"
-					},
-					"experience": {
-						"url": "experience",
+					}
+				}
+			},
+
+			"experience": {
+				"url": "experience",
+				"classes": "horizontal main page",
+				"title": "experience",
+
+				"children": {
+					"main": {
+						"url": "",
 						"title": "experience",
+						"classes": "page sub"
+					},
+					"biology": {
+						"url": "biology",
+						"title": "biology",
+						"classes": "page sub"
+					},
+					"ecocar": {
+						"url": "ecocar",
+						"title": "ecocar",
 						"classes": "page sub"
 					}
 				}
@@ -54,19 +78,19 @@ var object = {
 						"title": "projects",
 						"classes": "page sub"
 					},
-					"ecocar": {
-						"url": "ecocar",
-						"title": "ecocar",
-						"classes": "page sub"
-					},
-					"biology": {
-						"url": "biology",
-						"title": "biology",
+					"sockdraw": {
+						"url": "sockdraw",
+						"title": "sockdraw",
 						"classes": "page sub"
 					},
 					"window-tiler": {
 						"url": "window-tiler",
 						"title": "window tiler",
+						"classes": "page sub"
+					},
+					"gccui": {
+						"url": "gccui",
+						"title": "gccUI",
 						"classes": "page sub"
 					},
 					"get-lost": {

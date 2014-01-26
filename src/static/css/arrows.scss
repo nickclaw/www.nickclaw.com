@@ -31,4 +31,11 @@
 	&.right {
 		background-image: url(../image/arrows/arrow_large_skinny_right.png);
 	}
+
+	&.right.center {
+		margin-top: -10%;
+		position: absolute;
+		right: 10%;
+		top: 50%;
+	}
 }

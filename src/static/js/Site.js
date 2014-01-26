@@ -32,7 +32,7 @@ function Site() {
 	 */
 	this.goToPage = function(page) {
 		console.log('going to '+page.url);
-		History.pushState(null, page.title, window.location.origin + (page.url?page.url:'/'));
+		History.replaceState(null, page.title, (page.url?page.url:'/'));
 	}
 
 	/**

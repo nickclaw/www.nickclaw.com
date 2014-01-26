@@ -17,6 +17,25 @@ body, html, .container, .page {
 	height: 100%;
 }
 
+body {
+	-webkit-user-select: none;
+	cursor: pointer;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	cursor: -o-grab;
+	cursor: -ms-grab;
+	cursor: grab;
+
+	&.grabbing {
+		cursor: pointer;
+		cursor: -webkit-grabbing;
+		cursor: -moz-grabbing;
+		cursor: -o-grabbing;
+		cursor: -ms-grabbing;
+		cursor: grabbing;
+	}
+}
+
 .container {
 	overflow: hidden;
 

@@ -3,6 +3,7 @@
 		width: 100%;
 		margin: 0;
 		opacity: .5;
+		pointer-events: none;
 	}
 
 	p {
@@ -10,6 +11,33 @@
 	}
 }
 
+/************* EXPERIENCE **************/
+#container_experience_biology {
+	.image:nth-child(3n+1) {
+		background-image: url(../image/pages/biology/main.jpg);
+	}
+	.image:nth-child(3n+2) {
+		background-image: url(../image/pages/biology/folders.jpg);
+	}
+	.image:nth-child(3n+3) {
+		background-image: url(../image/pages/window-tiler/icon.png);
+		background-size: 75% 75%;
+	}
+}
+
+#container_experience_ecocar {
+	.image:nth-child(3n+1) {
+		background-image: url(../image/pages/ecocar/main.jpg);
+	}
+	.image:nth-child(3n+2) {
+		background-image: url(../image/pages/ecocar/dial.jpg);
+	}
+	.image:nth-child(3n+3) {
+		background-image: url(../image/pages/ecocar/dial.jpg);
+	}
+}
+
+/***************** PROJECTS ******************/
 #container_projects_main {
 	.image {
 		display: inline-block !important;
@@ -38,31 +66,6 @@
 	}
 }
 
-#container_projects_biology {
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/biology/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/biology/folders.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/window-tiler/icon.png);
-		background-size: 75% 75%;
-	}
-}
-
-#container_projects_ecocar {
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/ecocar/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/ecocar/dial.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/ecocar/dial.jpg);
-	}
-}
-
 #container_projects_get-lost {
 	.image:nth-child(3n+1) {
 		background-image: url(../image/pages/get-lost/main.jpg);
@@ -75,6 +78,7 @@
 	}
 }
 
+/************** CONTACT ****************/
 #container_contact_main {
 	.images {
 		left: 0px;
@@ -104,13 +108,6 @@
 				content: attr(data-text);
 				top: 60px;
 			}
-
-			/*
-			&:after {
-				content: attr(data-title);
-				bottom: 40px;
-			}
-			*/
 		}
 	}
 }

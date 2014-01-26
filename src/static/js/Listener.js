@@ -108,7 +108,7 @@ function Listener(manager) {
 	 * adds listener to scroll movements
 	 */
 	this.addScrollListeners = function() {
-		$('#container').delegate('.page.main', 'mousewheel touchmove', function(evt) {
+		$('#container').delegate('.page.main', 'mousewheel', function(evt) {
 			// stop event
 			evt.preventDefault();
 
@@ -129,7 +129,7 @@ function Listener(manager) {
 			}
 		});
 
-		$('#container').delegate('.page.sub', 'mousewheel touchmove', function(evt) {
+		$('#container').delegate('.page.sub', 'mousewheel', function(evt) {
 			evt.preventDefault();
 			if (!isScrolling) {
 				var dx = evt.originalEvent.wheelDeltaX; // change in x
@@ -149,6 +149,48 @@ function Listener(manager) {
 		});
 	}
 
+	this.addTouchListeners = function() {
+		var startPosition = null;
+
+		$("#container").delegate('.page.main', 'mousedown touchstart', function(evt) {
+			$(document.body).addClass('grabbing');
+			startPosition = {
+				x : evt.originalEvent.clientX,
+				y : evt.originalEvent.clientY
+			};
+		});
+
+		$("#container").delegate('.page.main', 'mousemove touchmove', function(evt) {
+			if ($(evt.originalEvent.target).not('a') && startPosition) {
+				var dx = startPosition.x - evt.originalEvent.clientX,
+					dy = startPosition.y - evt.originalEvent.clientY;
+
+				if (Math.abs(dy) < Math.abs(dx)) {
+					if (dx < -60) {
+						self.dispatch('left', this, evt);
+						$(this).trigger('mouseup');
+					} else if (dx > 60) {
+						self.dispatch('right', this, evt);
+						$(this).trigger('mouseup');
+					}
+				} else if (Math.abs(dx) < Math.abs(dy)) {
+					if (dy < -60) {
+						self.dispatch('up', this, evt);
+						$(this).trigger('mouseup');
+					} else if (dy > 60) {
+						self.dispatch('down', this, evt);
+						$(this).trigger('mouseup');
+					}
+				}
+			}
+		});
+
+		$("#container").delegate('.page.main', 'mouseup touchend', function(evt) {
+			$(document.body).removeClass('grabbing');
+			startPosition = null;
+		});
+	}
+
 	this.addResizeListener = function() {
 		$(window).on('resize zoom', function(evt) {
 			self.dispatch('viewchange', this, evt);
@@ -164,6 +206,7 @@ function Listener(manager) {
 		self.addKeyListeners();
 		self.addControlListeners();
 		self.addScrollListeners();
+		self.addTouchListeners();
 		self.addResizeListener();
 	}
 	self.init();

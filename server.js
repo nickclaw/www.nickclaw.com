@@ -17,7 +17,7 @@ swig.setFilter('length', function(input) {
 	try {
 		return Object.keys(input).length;
 	} catch (e) {
-		return -1;
+		return 0;
 	}
 });
 swig.setFilter('joinify', function(value, add, glue) {

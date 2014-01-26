@@ -21,6 +21,11 @@
 		padding-top: 75%;
 	}
 
+	&.large {
+		width: 55%;
+		padding-top: 55%;
+	}
+
 	&.med {
 		width: 40%;
 		padding-top: 40%;
@@ -29,6 +34,16 @@
 	&.min {
 		width: 20%;
 		padding-top: 20%;
+	}
+
+	h1,h2,h3,h4,h5,h6,p {
+		margin: {
+			top: -90%;
+			left: auto;
+			right: auto;
+		}
+		width: 100%;
+		text-align:center;
 	}
 }
 

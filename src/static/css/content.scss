@@ -32,6 +32,11 @@ h2 {
 			padding-right: 100px;
 		}
 	}
+
+	#container_home_main .content {
+		padding-left: 100px;
+		max-width: 100% !important;
+	}
 }
 
 @media all and (max-width: 824px) {
@@ -103,25 +108,10 @@ h2 {
 		}
 	}
 
-p a.internal {
-
+p a {
 	text-decoration: none;
-	color:black;
-	opacity: .65;
-	
-	&:before {
-		content: "";
-	background: {
-		image: url(../image/buttons/link.png);
-		repeat: no-repeat;
-		size:contain;
-	}
-	opacity:.5;
-	display: inline-block;
-	width: 1em;
-	margin-top:.2em;
-	height: .8em;
-	}
+	font-style: italic;
+	color: black;
 }
 
 .button {

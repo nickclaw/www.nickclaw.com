@@ -28,7 +28,7 @@ $iconMargin: 15px;
 		*[data-title]:before {
 			content: attr(data-title);
 			display: block;
-			position: relative;
+			position: absolute;
 			overflow: visible;
 			color: rgba(0,0,0,0);
 			-webkit-transition: color .5s ease;
@@ -81,7 +81,7 @@ $iconMargin: 15px;
 
 		*[data-title]:before {
 			text-align: right;
-			right: 110px;
+			right: 38px;
 		}
 
 		*[data-title]:hover:before {
@@ -119,7 +119,10 @@ $iconMargin: 15px;
 		}
 
 		*[data-title]:before {
-			display: none !important;
+			width: 200px;
+			text-align: center;
+			left: -100px + $iconMargin;
+			top: -30px;
 		}
 
 		*[data-title]:hover:before {
