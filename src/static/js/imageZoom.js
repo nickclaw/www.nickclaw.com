@@ -1,6 +1,6 @@
 $(function() {
 
-	var origianl = null,
+	var original = null,
 		open = null,
 		nativeWidth = null,
 		nativeHeight = null;
@@ -16,12 +16,13 @@ $(function() {
 	function calculatePosition() {
 		if (open) {
 			var win = $(window),
-				wHeight = win.height(),
-				wWidth = win.width(),
-				finalHeight = Math.min(nativeHeight, wHeight - 100),
-				finalWidth = Math.min(nativeWidth, wWidth - 100),
-				offsetX = wWidth / 2 - finalWidth /2,
-				offsetY = wHeight /2 - finalHeight / 2;
+				maxHeight = win.height(),
+				maxWidth = win.width(),
+				scaleFactor = Math.min(maxHeight * .9 / nativeHeight, maxWidth * .9 / nativeWidth, 1),
+				finalWidth = nativeWidth * scaleFactor,
+				finalHeight = nativeHeight * scaleFactor,
+				offsetX = maxWidth / 2 - finalWidth /2,
+ 				offsetY = maxHeight /2 - finalHeight / 2;
 
 			open.css({
 					left : offsetX,
@@ -38,20 +39,19 @@ $(function() {
 		.on('click', '.image.zoom, .overlay', function(evt) {
 			if (open) {
 				closeImage();
-			} else {
+			} else if (!isScrolling) {
 				original = $(this);
-				var src = original.css('background-image');
 				
+				// preload image and get width
 				var newImg = new Image();
 				newImg.onload = function() {
 					nativeWidth = this.width;
 					nativeHeight = this.height;
 					calculatePosition();
 				}
-				newImg.src = src.slice(0, src.length - 1).slice(4); // this must be done AFTER setting onload
+				newImg.src = /url\("?(.*?)"?\)/.exec(original.css('background-image'))[1];
 
 				$('#overlay').addClass('visible');
-				
 				open = $(this)
 					.clone()
 					.addClass('zoomed')
@@ -65,7 +65,11 @@ $(function() {
 					})
 					.appendTo(document.body);
 			}
-		});
+		})
+		.on('click', '#overlay', closeImage)
+		.on('keydown', function(evt) {
+			evt.keyCode === 27 && closeImage();
+		});;
 
-	$(window).resize(calculatePosition);
+	$(window).resize(calculatePosition)
 });

@@ -4,10 +4,11 @@
 		repeat: no-repeat;
 		color: white;
 		position: 50%;
+		image : attr(data-src);
 	}
 	border-radius: 100%;
 	display: inline-block;
-	box-shadow: 0px 5px 10px rgba(0,0,0,.3) inset, 0px 5px 10px rgba(0,0,0,.3);
+	box-shadow: 0px 5px 10px rgba(255,255,255,.3) inset, 0px 5px 10px rgba(0,0,0,.3);
 	height: 0px;
 
 	margin: 1%;
@@ -16,15 +17,32 @@
 		cursor: pointer;
 		transition: all .5s ease;
 	}
+	&.zoom:hover {
+		box-shadow: 0px 5px 10px rgba(100,100,100,.5) inset, 0px 5px 10px rgba(0,0,0,.5);
+	}
 
 	&.zoomed {
 		z-index: 21;
 		position: absolute;
 		opacity: 0; // gets animated
-		box-shadow: none;
-		border: black 10px solid;
+		box-shadow: none !important;
 		box-sizing: content-box;
 		border-radius: 40px;
+		overflow: hidden;
+
+
+		&:after {
+			content: attr(title);
+			display: block;
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+			color: white;
+			text-shadow: 0px 0px 6px black;
+			font-size: 25pt;
+			white-space: nowrap;
+			height: 25pt;
+		}
 	}
 
 

@@ -42,33 +42,10 @@
 	}
 }
 
-#container_about_me {
-	.image {
-		margin: 3%;
-	}
-
-	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/me/bham.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/me/safety.png);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/me/uw.jpg);
-	}
-}
-
 /************* EXPERIENCE **************/
 #container_experience_biology {
 	.image:nth-child(3n+1) {
 		background-image: url(../image/pages/biology/main.jpg);
-	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/biology/folders.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/biology/exam.png);
-		background-size: 75% 75%;
 	}
 }
 
@@ -76,20 +53,13 @@
 	.image:nth-child(3n+1) {
 		background-image: url(../image/pages/ecocar/main.jpg);
 	}
-	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/ecocar/dial.jpg);
-	}
-	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/ecocar/demo.jpg);
-	}
 }
 
 /***************** PROJECTS ******************/
 #container_projects_sockdraw {
 	.image:nth-child(3n+1) {
-		background-color: rgb(241,241,241);
 		background-image: url(../image/pages/sockdraw/main.png);
-		background-position: 0px 20px;
+		background-position: 0% 0%;
 	}
 	.image:nth-child(3n+2) {
 		background-image: url(../image/pages/sockdraw/color.png);
@@ -101,7 +71,8 @@
 
 #container_projects_window-tiler {
 	.image:nth-child(3n+1) {
-		background-image: url(../image/pages/window-tiler/main.jpg);
+		background-image: url(../image/pages/window-tiler/main.png);
+		background-position: 100% 0%;
 	}
 	.image:nth-child(3n+2) {
 		background-image: url(../image/pages/window-tiler/screen.jpg);
@@ -115,14 +86,14 @@
 #container_projects_gccui {
 	.image:nth-child(3n+1) {
 		background-color: rgb(241,241,241);
-		background-image: url(../image/pages/gccui/main.png);
+		background-image: url(../image/pages/gccui/code.png);
 		background-position: 0px 20px;
 	}
 	.image:nth-child(3n+2) {
-		background-image: url(../image/pages/gccui/compiled.png);
+		background-image: url(../image/pages/gccui/settings.png);
 	}
 	.image:nth-child(3n+3) {
-		background-image: url(../image/pages/gccui/code.png);
+		background-image: url(../image/pages/gccui/compiled.png);
 	}
 }
 
@@ -159,6 +130,7 @@
 				opacity: 0;
 				pointer-events: none;
 				transition: opacity .3s ease;
+				font-size: 12pt;
 			}
 
 			&:hover:before /* , &:hover:after */ {
