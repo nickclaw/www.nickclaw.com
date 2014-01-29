@@ -18,7 +18,7 @@ h2 {
 
 .tech {
 	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 80%;
+	font-size: 12pt;
 	margin: 12px;
 	text-align: center;
 	opacity: .5;
@@ -50,6 +50,8 @@ h2 {
 }
 
 .content {
+	
+	font-size: 0px;
 
 	@media all and (max-width: 825px) {
 		
@@ -69,6 +71,21 @@ h2 {
 		}
 	}
 
+	p.comment {
+		text-indent: 0px;
+		font-size: 12pt;
+		text-align: center;
+	}
+
+	.inner {
+		display: inline-block;
+		text-align: center;
+	}
+
+	p.plain {
+		text-indent: 0px;
+	}
+
 	#instructions {
 		text-align:center;
 	}
@@ -77,7 +94,8 @@ h2 {
 	.column {
 		width: 50%;
 		height: 100%;
-		float: left;
+		display: inline-block;
+		vertical-align: middle;
 
 		@media all and (orientation: vertical) {
 			float:none;

@@ -4,12 +4,14 @@ var object = {
 		"classes": "vertical",
 		"nav": "vertical",
 
+		"index": 0,
 		"children": {
 			"home": {
 				"url": "",
 				"classes": "horizontal main page",
 				"title": "home",
 
+				"index": 0,
 				"children": {
 					"main": {
 						"url": "",
@@ -24,6 +26,7 @@ var object = {
 				"classes": "horizontal main page",
 				"title": "about",
 				
+				"index": 0,
 				"children": {
 					"main": {
 						"url": "",
@@ -48,6 +51,7 @@ var object = {
 				"classes": "horizontal main page",
 				"title": "experience",
 
+				"index": 0,
 				"children": {
 					"main": {
 						"url": "",
@@ -72,6 +76,7 @@ var object = {
 				"classes": "horizontal main page",
 				"title": "projects",
 
+				"index": 0,
 				"children": {
 					"main": {
 						"url": "",
@@ -105,7 +110,8 @@ var object = {
 				"url": "contact",
 				"classes": "horizontal main page",
 				"title": "contact",
-				
+					
+				"index": 0,
 				"children": {
 					"main": {
 						"url": "",

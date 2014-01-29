@@ -31,7 +31,6 @@ function Site() {
 	 * @param {Page} page
 	 */
 	this.goToPage = function(page) {
-		console.log('going to '+page.url);
 		History.replaceState(null, page.title, (page.url?page.url:'/'));
 	}
 
@@ -41,7 +40,6 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageUp = function(evt) {
-		console.log('page up');
 		var newPage = self.manager.getUp();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -54,7 +52,6 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageDown = function(evt) {
-		console.log('page down');
 		var newPage = self.manager.getDown();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -67,7 +64,6 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageLeft = function(evt) {
-		console.log('page left');
 		var newPage = self.manager.getLeft();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -80,7 +76,6 @@ function Site() {
 	 * @this {?}
 	 */
 	this.pageRight = function(evt) {
-		console.log('page right');
 		var newPage = self.manager.getRight();
 		if (newPage) {
 			self.goToPage(newPage);
@@ -108,7 +103,6 @@ function Site() {
 	 * @this {?}
 	 */
 	this.onStateChange = function(evt, moveTo) {
-		console.log(window.location.pathname);
 		var page = self.manager.route();
 		if (page) {
 			self.manager.setCurrent(page);

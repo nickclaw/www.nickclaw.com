@@ -108,16 +108,24 @@ function Listener(manager) {
 	 * adds listener to scroll movements
 	 */
 	this.addScrollListeners = function() {
-		$('#container').delegate('.page.main', 'mousewheel', function(evt) {
+		$('#container').delegate('.page.main', 'mousewheel wheel', function(evt) {
 			// stop event
 			evt.preventDefault();
 
+			console.log('trying');
+
 			if (!isScrolling) {
-				var dx = evt.originalEvent.wheelDeltaX; // change in x
-				var dy = evt.originalEvent.wheelDeltaY; // change in y
+
+				console.log('not scrolling');
+				console.log(this.id);
+
+				var dx = evt.originalEvent.wheelDeltaX || - evt.originalEvent.deltaX || 0; // change in x
+				var dy = evt.originalEvent.wheelDeltaY || - evt.originalEvent.deltaY || 0; // change in y
 				var current = self.manager.getCurrent(); // get current page
 
 				if (current.up().id === '#'+this.id) {
+					console.log('possible');
+
 					if (Math.abs(dy) > Math.abs(dx)) {
 						if (dy < -20) {
 							self.dispatch('down', this, evt);
@@ -129,11 +137,11 @@ function Listener(manager) {
 			}
 		});
 
-		$('#container').delegate('.page.sub', 'mousewheel', function(evt) {
+		$('#container').delegate('.page.sub', 'mousewheel wheel', function(evt) {
 			evt.preventDefault();
 			if (!isScrolling) {
-				var dx = evt.originalEvent.wheelDeltaX; // change in x
-				var dy = evt.originalEvent.wheelDeltaY; // change in y
+				var dx = evt.originalEvent.wheelDeltaX || - evt.originalEvent.deltaX || 0; // change in x
+				var dy = evt.originalEvent.wheelDeltaY || - evt.originalEvent.deltaY || 0; // change in y
 				var current = self.manager.getCurrent(); // get current page
 
 				if (current.id === '#'+this.id) {

@@ -29,7 +29,7 @@ function Scroller() {
 		 		}, {
 		 			'duration': 0,
 		 			'queue': false
-		 		})
+		 		});
 		 	}
 		});
 
