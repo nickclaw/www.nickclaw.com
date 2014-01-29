@@ -12,6 +12,22 @@
 
 	margin: 1%;
 
+	&.zoom {
+		cursor: pointer;
+		transition: all .5s ease;
+	}
+
+	&.zoomed {
+		z-index: 21;
+		position: absolute;
+		opacity: 0; // gets animated
+		box-shadow: none;
+		border: black 10px solid;
+		box-sizing: content-box;
+		border-radius: 40px;
+	}
+
+
 	&.max {
 		width: 90%;
 		padding-top: 90%;
