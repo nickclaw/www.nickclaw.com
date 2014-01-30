@@ -76,7 +76,7 @@ gulp.task('css', function() {
 		includePaths : ['./src/static/css'],
 		outputStyle : 'compressed'
 	}))
-	.pipe(prefix('> 1%','last 3 versions'))
+	.pipe(prefix('> 5%','last 3 versions'))
 	.pipe(gulp.dest('./build/static/css/'))
 });
 

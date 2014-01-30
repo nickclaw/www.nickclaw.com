@@ -1,0 +1,27 @@
+#overlay {
+	pointer-events: none;
+	opacity: 0;
+	display: block;
+	background: rgba(0,0,0,.5);
+	z-index: 20;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+#overlay.visible {
+	pointer-events: all;
+	opacity: 1;
+	cursor: default;
+	width: 100%;
+	height: 100%;
+}
+
+#container {
+	transition: filter .3s linear;
+	filter: blur(0px);
+}
+
+#overlay.visible ~ #container {
+	filter : blur(2px);
+}

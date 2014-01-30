@@ -160,43 +160,44 @@ function Listener(manager) {
 	this.addTouchListeners = function() {
 		var startPosition = null;
 
-		$("#container").delegate('.page.main', 'mousedown touchstart', function(evt) {
-			$(document.body).addClass('grabbing');
-			startPosition = {
-				x : evt.originalEvent.clientX || evt.originalEvent.touches[0].clientX,
-				y : evt.originalEvent.clientY || evt.originalEvent.touches[0].clientY
-			};
-		});
+		$("#container")
+			.on('mousedown touchstart', '.page.main', function(evt) {
+				$(document.body).addClass('grabbing');
+				startPosition = {
+					x : evt.originalEvent.clientX || evt.originalEvent.touches[0].clientX,
+					y : evt.originalEvent.clientY || evt.originalEvent.touches[0].clientY
+				};
+			})
+			.on('contextmenu', '.page.main', function(evt) {
+					$(this).trigger('touchend');
+			})
+			.on('mousemove touchmove', '.page.main', function(evt) {
+				if ($(evt.originalEvent.target).not('a') && startPosition) {
+					var dx = startPosition.x - ( evt.originalEvent.clientX || evt.originalEvent.touches[0].clientX ),
+						dy = startPosition.y - ( evt.originalEvent.clientY || evt.originalEvent.touches[0].clientY );
 
-		$("#container").delegate('.page.main', 'mousemove touchmove', function(evt) {
-			if ($(evt.originalEvent.target).not('a') && startPosition) {
-				var dx = startPosition.x - ( evt.originalEvent.clientX || evt.originalEvent.touches[0].clientX ),
-					dy = startPosition.y - ( evt.originalEvent.clientY || evt.originalEvent.touches[0].clientY );
-
-				if (Math.abs(dy) < Math.abs(dx)) {
-					if (dx < -60) {
-						self.dispatch('left', this, evt);
-						$(this).trigger('mouseup');
-					} else if (dx > 60) {
-						self.dispatch('right', this, evt);
-						$(this).trigger('mouseup');
-					}
-				} else if (Math.abs(dx) < Math.abs(dy)) {
-					if (dy < -60) {
-						self.dispatch('up', this, evt);
-						$(this).trigger('mouseup');
-					} else if (dy > 60) {
-						self.dispatch('down', this, evt);
-						$(this).trigger('mouseup');
+					if (Math.abs(dy) < Math.abs(dx)) {
+						if (dx < -60) {
+							self.dispatch('left', this, evt);
+							$(this).trigger('mouseup');
+						} else if (dx > 60) {
+							self.dispatch('right', this, evt);
+							$(this).trigger('mouseup');
+						}
+					} else if (Math.abs(dx) < Math.abs(dy)) {
+						if (dy < -60) {
+							self.dispatch('up', this, evt);
+							$(this).trigger('mouseup');
+						} else if (dy > 60) {
+							self.dispatch('down', this, evt);
+							$(this).trigger('mouseup');
+						}
 					}
 				}
-			}
-		});
-
-		$("#container").delegate('.page.main', 'mouseup touchend', function(evt) {
-			$(document.body).removeClass('grabbing');
-			startPosition = null;
-		});
+			}).on('mouseup touchend', '.page.main', function(evt) {
+				$(document.body).removeClass('grabbing');
+				startPosition = null;
+			});
 	}
 
 	this.addResizeListener = function() {
