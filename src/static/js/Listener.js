@@ -163,15 +163,15 @@ function Listener(manager) {
 		$("#container").delegate('.page.main', 'mousedown touchstart', function(evt) {
 			$(document.body).addClass('grabbing');
 			startPosition = {
-				x : evt.originalEvent.clientX,
-				y : evt.originalEvent.clientY
+				x : evt.originalEvent.clientX || evt.originalEvent.touches[0].clientX,
+				y : evt.originalEvent.clientY || evt.originalEvent.touches[0].clientY
 			};
 		});
 
 		$("#container").delegate('.page.main', 'mousemove touchmove', function(evt) {
 			if ($(evt.originalEvent.target).not('a') && startPosition) {
-				var dx = startPosition.x - evt.originalEvent.clientX,
-					dy = startPosition.y - evt.originalEvent.clientY;
+				var dx = startPosition.x - ( evt.originalEvent.clientX || evt.originalEvent.touches[0].clientX ),
+					dy = startPosition.y - ( evt.originalEvent.clientY || evt.originalEvent.touches[0].clientY );
 
 				if (Math.abs(dy) < Math.abs(dx)) {
 					if (dx < -60) {

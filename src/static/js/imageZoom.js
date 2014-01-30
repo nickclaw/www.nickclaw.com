@@ -67,9 +67,7 @@ $(function() {
 			}
 		})
 		.on('click', '#overlay', closeImage)
-		.on('keydown', function(evt) {
-			evt.keyCode === 27 && closeImage();
-		});;
+		.on('keydown', closeImage);;
 
 	$(window).resize(calculatePosition)
 });
