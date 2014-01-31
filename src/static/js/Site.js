@@ -175,4 +175,5 @@ function Site() {
 
 $(document).ready(function() {
 	site = new Site();
+	console.log('View the code at: http://github.com/nickclaw/www.nickclaw.com!');
 });
