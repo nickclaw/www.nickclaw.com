@@ -106,27 +106,6 @@ h2 {
 		display: inline-block;
 		vertical-align: middle;
 
-		@media all and (orientation: vertical) {
-			float:none;
-			width: 100%;
-			height: auto;
-
-			.image.small {
-				display:none;
-				width:30%;
-				padding-top:30%;
-			}
-
-			&.images, .images {
-				width: 70%;
-				margin: 0 auto;
-			}
-
-			h2 {
-				text-align:center;
-			}
-		}
-
 		&:first-child {
 			padding-right: 10px;
 		}
