@@ -13,6 +13,15 @@
 }
 
 /************* ABOUT **************/
+#container_about_main {
+	.image {
+		background-image: url(../image/pages/about-main/me.png);
+		float: right;
+		margin-right: 32%;
+	}
+}
+
+
 #container_about_me {
 	.image {
 		margin: 3%;

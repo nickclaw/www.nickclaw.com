@@ -11,7 +11,6 @@ function Scroller() {
 	 * @param {Page} page
 	 */
 	this.scrollTo = function(page) {
-		console.log('scrolling to '+page.id);
 		isScrolling = true;
 		didBounce = false;
 		

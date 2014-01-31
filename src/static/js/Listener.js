@@ -55,7 +55,7 @@ function Listener(manager) {
 	 * adds listeners to all events
 	 */
 	this.addLinkListeners = function() {
-		$('#container').delegate('a.internal', 'click', function(evt) {
+		$('#container').on('click', 'a.internal', function(evt) {
 			evt.preventDefault();
 			self.dispatch('link', this, evt);
 		});
@@ -93,13 +93,13 @@ function Listener(manager) {
 	 */
 	this.addControlListeners = function() {
 		$('#container')
-		  .delegate('.down.control, > .nav .last.control', 'click', function(evt) {
+		  .on('click', '.down.control, > .nav .last.control', function(evt) {
 			self.dispatch('down', this, evt);
-		}).delegate('.up.control, > .nav .first.control', 'click', function(evt) {
+		}).on('click', '.up.control, > .nav .first.control', function(evt) {
 			self.dispatch('up', this, evt);
-		}).delegate('.right.control, .horizontal > .nav .last.control', 'click', function(evt) {
+		}).on('click', '.right.control, .horizontal > .nav .last.control', function(evt) {
 			self.dispatch('right', this, evt);
-		}).delegate('.left.control, .horizontal > .nav .first.control', 'click', function(evt) {
+		}).on('click', '.left.control, .horizontal > .nav .first.control', function(evt) {
 			self.dispatch('left', this, evt);
 		});
 	}
@@ -108,23 +108,18 @@ function Listener(manager) {
 	 * adds listener to scroll movements
 	 */
 	this.addScrollListeners = function() {
-		$('#container').delegate('.page.main', 'mousewheel wheel', function(evt) {
+		$('#container').on('mousewheel wheel', '.page.main', function(evt) {
 			// stop event
 			evt.preventDefault();
 
-			console.log('trying');
 
 			if (!isScrolling) {
-
-				console.log('not scrolling');
-				console.log(this.id);
 
 				var dx = evt.originalEvent.wheelDeltaX || - evt.originalEvent.deltaX || 0; // change in x
 				var dy = evt.originalEvent.wheelDeltaY || - evt.originalEvent.deltaY || 0; // change in y
 				var current = self.manager.getCurrent(); // get current page
 
 				if (current.up().id === '#'+this.id) {
-					console.log('possible');
 
 					if (Math.abs(dy) > Math.abs(dx)) {
 						if (dy < -20) {
@@ -137,7 +132,7 @@ function Listener(manager) {
 			}
 		});
 
-		$('#container').delegate('.page.sub', 'mousewheel wheel', function(evt) {
+		$('#container').on('mousewheel wheel', '.page.sub', function(evt) {
 			evt.preventDefault();
 			if (!isScrolling) {
 				var dx = evt.originalEvent.wheelDeltaX || - evt.originalEvent.deltaX || 0; // change in x

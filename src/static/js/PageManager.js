@@ -34,7 +34,6 @@ function PageManager() {
 	 */
 	this.route = function(url) {
 		var url = url || History.getState().cleanUrl.slice(window.location.protocol.length + 2 + window.location.host.length);
-		console.log(url);
 		var thePage = null;
 		self.each(function(page) {
 			if (page.url === url || page.url + '/' === url) {

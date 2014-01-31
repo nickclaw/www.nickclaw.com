@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 // compile everything for production
 gulp.task('default', function(){
 	gulp.run('clean', function() {
-		gulp.run('js', 'css', 'images', 'html', function() {});
+		gulp.run('js', 'css', 'images', 'html', 'downloads', function() {});
 	});
 });
 
@@ -88,6 +88,11 @@ gulp.task('images', function() {
 	gulp.src('./src/static/image/**')
 		.pipe(imagemin())
 		.pipe(gulp.dest('./build/static/image/'));
+});
+
+gulp.task('downloads', function() {
+	gulp.src('./src/static/downloads/*')
+		.pipe(gulp.dest('./build/static/downloads/'))
 });
 
 gulp.task('html', function() {
