@@ -1,7 +1,10 @@
+node_modules/*
 !node_modules/.gitkeep
 
-!src/lib/.gitkeep
+lib/*
+!lib/.gitkeep
 
+build/*
 !build/.gitkeep
 
 *.log
