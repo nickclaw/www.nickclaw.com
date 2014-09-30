@@ -1,13 +1,8 @@
+!node_modules/.gitkeep
 
-*.css
-.sass-cache
+!src/lib/.gitkeep
 
-~build
-build/
+!build/.gitkeep
 
-src/static/js/external/*
-
-node_modules
 *.log
-
 *.psd
