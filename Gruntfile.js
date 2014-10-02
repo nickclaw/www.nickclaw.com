@@ -55,9 +55,37 @@ module.exports = function(grunt) {
             // unminified
             dev: {
                 files: {
-                    'lodash.js' : 'lodash/dist/lodash.js',
                     'angular.js': 'angular/angular.js'
                 }
+            }
+        },
+
+
+        //
+        // Custom lodash build
+        //
+
+        lodash: {
+            dist: {
+                dest: 'build/lib/lodash.js',
+                options: {
+                    shortFlags: ['m', 'p'],
+                    exports: ['global']
+                }
+            }
+        },
+
+        lodashAutobuild: {
+            options: {
+                lodashConfigPath: 'lodash.dist.options.include',
+                lodashObjects: ['_']
+            },
+
+            dist: {
+                options: {
+                    lodashTargets: ['dist']
+                },
+                src: ['src/script/**/*.js']
             }
         },
 
@@ -167,7 +195,7 @@ module.exports = function(grunt) {
             },
             script: {
                 files: 'src/**/*.js',
-                tasks: ['uglify:dev']
+                tasks: ['uglify:dev', 'lodashAutobuild:dist']
             },
             image: {
 
@@ -188,9 +216,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-lodash');
+    grunt.loadNpmTasks('grunt-lodash-autobuild');
 
     grunt.registerTask('default', [
         'bowercopy:dist',
+        'lodashAutobuild:dist',
         'uglify:dist',
         'sass:dist',
         'autoprefixer:dist',
@@ -199,6 +230,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('develop', [
         'bowercopy:dev',
+        'lodashAutobuild:dist',
         'uglify:dev',
         'sass:dev',
         'copy:dev',

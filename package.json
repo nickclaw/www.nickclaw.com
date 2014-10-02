@@ -14,6 +14,9 @@
     "grunt-contrib-imagemin": "^0.8.1",
     "grunt-contrib-sass": "^0.8.1",
     "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-lodash": "^0.3.0",
+    "grunt-lodash-autobuild": "^0.3.0",
+    "lodash-cli": "^2.4.2"
   }
 }
