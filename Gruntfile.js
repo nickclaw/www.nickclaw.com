@@ -154,18 +154,26 @@ module.exports = function(grunt) {
                     conservativeCollapse: true
                 },
 
-                files: {
-                    'build/index.html': 'src/index.html'
-                }
+                files: [{
+                    cwd: 'src',
+                    src: '**/*.html',
+                    dest: 'build',
+                    expand: true,
+                    flatten: false
+                }]
             }
         },
 
         // just move dev html
         copy: {
             dev: {
-                files: {
-                    'build/index.html': 'src/index.html'
-                }
+                files: [{
+                    cwd: 'src',
+                    src: '**/*.html',
+                    dest: 'build',
+                    expand: true,
+                    flatten: false
+                }]
             }
         },
 

@@ -15,8 +15,10 @@
             <aside>
 
             </aside>
-            <main>
+            <main ng-controller="MainController">
+                <site-section ng-repeat="section in site.sections" section="section">
 
+                </site-section>
             </main>
         </div>
     </body>

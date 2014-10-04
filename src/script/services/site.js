@@ -1,89 +1,86 @@
 angular.module('app.services')
-    .constant('site', {
-        sections: [
-            {
-                name: 'About Me',
-                title: 'about',
-                path: 'about',
+    .service('site', [
+        'SITE_SCHEMA',
+        function(SITE_SCHEMA) {
 
-                templateUrl: 'about/main.html',
+            var commonProto = {
 
-                articles: [
-                    {
-                        name: 'Me',
-                        path: 'me',
-                        templateUrl: 'about/me.html'
-                    },
-                    {
-                        name: 'Now',
-                        path: 'now',
-                        templateUrl: 'about/now.html'
+                /**
+                 * Returns the parent class
+                 * @return {Instance}
+                 */
+                getParent: function() {
+                    return this._parent;
+                },
+
+                /**
+                 * Gets the instances url
+                 * @return {String}
+                 */
+                getUrl: function() {
+                    var parent = this.getParent();
+
+                    if (parent) {
+                        return parent.getUrl() + '/' + this.path;
+                    } else {
+                        return '/';
                     }
-                ]
-            },
-            {
-                name: 'Experience',
-                title: 'experience',
-                path: 'experience',
+                }
+            };
 
-                templateUrl: 'experience/main.html',
+            /**
+             * The site state
+             * @constructor
+             * @param {Object} schema
+             */
+            function Site(schema) {
+                _.extend(this, schema);
 
-                articles: [
-                    {
-                        name: 'Disney',
-                        path: 'disney',
-                        templateUrl: 'experience/disney.html'
-                    },
-                    {
-                        name: 'Biology',
-                        path: 'biology',
-                        templateUrl: 'experience/biology.html'
-                    },
-                    {
-                        name: 'Ecocar',
-                        path: 'ecocar',
-                        templateUrl: 'experience/biology.html'
-                    }
-                ]
-            },
-            {
-                name: 'Projects',
-                title: 'projects',
-                path: 'projects',
-
-                templateUrl: 'experience/main.html',
-
-                articles: [
-                    {
-                        name: 'qdb',
-                        path: 'qdb',
-                        templateUrl: 'projects/qdb.html'
-                    },
-                    {
-                        name: 'Drown The Ave',
-                        path: 'dta',
-                        templateUrl: 'projects/dta.html'
-                    },
-                    {
-                        name: 'Window Tiler',
-                        path: 'tiler',
-                        templateUrl: 'projects/tiler.html'
-                    },
-                    {
-                        name: 'Sockdraw',
-                        path: 'sockdraw',
-                        templateUrl: 'projects/sockdraw.html'
-                    }
-                ]
-            },
-            {
-                name: 'Contact',
-                title: 'contact',
-                path: 'contact',
-
-                templateUrl: 'contact/main.html',
-
-                articles: []
+                this.sections = _.map(this.sections, function(sectionSchema) {
+                    return new Section(sectionSchema, this);
+                }, this);
             }
-        ]
-    });
+
+            _.extend(Site.prototype, commonProto, {
+
+            });
+
+
+            /**
+             * The site state
+             * @constructor
+             * @param {Object} schema
+             */
+            function Section(schema, parent) {
+                _.extend(this, schema);
+                this._parent = parent;
+
+                this.articles = _.map(this.articles, function(articleSchema) {
+                    return new Article(articleSchema, this);
+                }, this);
+
+                this.expanded = false;
+            }
+
+            _.extend(Section.prototype, commonProto, {
+
+            });
+
+
+            /**
+             * The site state
+             * @constructor
+             * @param {Object} schema
+             */
+            function Article(schema, parent) {
+                _.extend(this, schema);
+                this._parent = parent;
+            }
+
+            _.extend(Article.prototype, commonProto, {
+
+            });
+
+            return new Site(SITE_SCHEMA);
+        }
+    ]);
