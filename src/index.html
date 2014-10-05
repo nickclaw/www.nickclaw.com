@@ -9,12 +9,22 @@
     </head>
     <body ng-app="app">
         <header>
-
+            <div id="top"></div>
+            <div id="bottom"></div>
         </header>
         <div>
-            <aside>
-
-            </aside>
+            <nav ng-controller="NavController">
+                <ul>
+                    <li ng-repeat="section in site.sections">
+                        <a href="{{section.getUrl()}}">{{section.name}}</a>
+                        <ul>
+                            <li ng-repeat="article in section.articles">
+                                <a href="{{article.getUrl()}}">{{article.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
             <main ng-controller="MainController">
                 <site-section ng-repeat="section in site.sections" section="section">
 

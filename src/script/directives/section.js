@@ -10,7 +10,6 @@ angular.module('app.directives')
                     section: '=section'
                 },
                 link: function($scope, elem) {
-                    console.log($scope);
                 }
             };
         }

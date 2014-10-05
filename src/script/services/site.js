@@ -21,7 +21,7 @@ angular.module('app.services')
                     var parent = this.getParent();
 
                     if (parent) {
-                        return parent.getUrl() + '/' + this.path;
+                        return parent.getUrl() + this.path + '/';
                     } else {
                         return '/';
                     }

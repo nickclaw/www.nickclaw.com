@@ -174,6 +174,16 @@ module.exports = function(grunt) {
                     expand: true,
                     flatten: false
                 }]
+            },
+
+            images: {
+                files: [{
+                    cwd: 'src',
+                    src: 'image/**/*',
+                    dest: 'build',
+                    expand: true,
+                    flatten: false
+                }]
             }
         },
 
@@ -242,6 +252,7 @@ module.exports = function(grunt) {
         'uglify:dev',
         'sass:dev',
         'copy:dev',
+        'copy:images',
         'concurrent:watch'
     ]);
 }
