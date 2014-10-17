@@ -8,12 +8,4 @@ angular.module('app', [
         'app.directives',
         'app.filters',
         'app.services'
-    ])
-    .run([
-        '$rootScope',
-        function($rootScope) {
-            $rootScope.onScroll = function() {
-                console.log.apply(console, arguments);
-            }
-        }
     ]);

@@ -24,17 +24,13 @@ module.exports = function(grunt) {
                 files: {
                     'build/script/main.js':  'src/script/**/*.js'
                 }
-            },
+            }
+        },
 
+        concat: {
             dev: {
-                options: {
-                    preserveComments: 'all',
-                    mangle: false
-                },
-
-                files: {
-                    'build/script/main.js': 'src/script/**/*.js'
-                }
+                src: 'src/script/**/*.js',
+                dest: 'build/script/main.js'
             }
         },
 
@@ -213,7 +209,7 @@ module.exports = function(grunt) {
             },
             script: {
                 files: 'src/**/*.js',
-                tasks: ['uglify:dev', 'lodashAutobuild:dist']
+                tasks: ['concat:dev', 'lodashAutobuild:dist']
             },
             image: {
 
@@ -233,6 +229,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-lodash');
     grunt.loadNpmTasks('grunt-lodash-autobuild');
@@ -249,7 +246,7 @@ module.exports = function(grunt) {
     grunt.registerTask('develop', [
         'bowercopy:dev',
         'lodashAutobuild:dist',
-        'uglify:dev',
+        'concat:dev',
         'sass:dev',
         'copy:dev',
         'copy:images',
