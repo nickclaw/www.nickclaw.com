@@ -1,5 +1,6 @@
 import React from 'react';
-import { Router, Route, Link, DefaultRoute } from 'react-router';
+import { Router, Route, Link, DefaultRoute, RouteHandler } from 'react-router';
+import IndexPage from './page/index/index';
 
 const Page = React.createClass({
 
@@ -11,7 +12,7 @@ const Page = React.createClass({
                     <link href="/static/style/index.css" rel="stylesheet" type="text/css" />
                 </head>
                 <body>
-                    <h1>Hello World</h1>
+                    <RouteHandler />
                 </body>
                 <script src="/static/app.js"></script>
             </html>
@@ -21,5 +22,7 @@ const Page = React.createClass({
 
 // export routes
 export default (
-    <Route path="/" handler={Page} />
+    <Route path="/" handler={Page}>
+        <DefaultRoute handler={IndexPage} />
+    </Route>
 );

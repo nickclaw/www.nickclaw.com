@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', ['concurrent:build']);
-    grunt.registerTask('develop', ['imagemin:develop', 'browserify:develop', 'concurrent:develop']);
+    grunt.registerTask('develop', ['sass:develop', 'imagemin:develop', 'browserify:develop', 'concurrent:develop']);
     grunt.registerTask('default', ['develop']);
 
 
