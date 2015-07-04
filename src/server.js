@@ -20,6 +20,11 @@ app.use(function(err, req, res, next) {
     res.sendStatus(500);
 });
 
-app.listen(8080, function(err) {
-    console.log(arguments);
+app.listen(C.SERVER.PORT, function(err) {
+    if (err) {
+        Log.error("Could not start server.");
+        Log.error(err.stack);
+    } else {
+        Log.info("Server started.");
+    }
 });

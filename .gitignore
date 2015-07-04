@@ -1,7 +1,11 @@
 node_modules
+.sass-cache
+*.log
 
 public/build
 public/lib
 !**/.gitkeep
 
-.sass-cache
+config/*.json
+!config/default.json
+!config/travis.json

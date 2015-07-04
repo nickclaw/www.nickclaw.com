@@ -1,0 +1,17 @@
+{
+    "SERVER": {
+        "PORT": 8080
+    },
+
+    "LOGGING": {
+        "CONSOLE": {
+            "ENABLED": true,
+            "LEVEL": "silly"
+        },
+        "FILE": {
+            "ENABLED": true,
+            "LEVEL": "silly",
+            "NAME": "output.log"
+        }
+    }
+}

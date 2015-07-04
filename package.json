@@ -19,8 +19,10 @@
     "babelify": "^6.1.2",
     "express": "^4.13.0",
     "lodash": "^3.10.0",
+    "nconf": "^0.7.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
-    "reflux": "^0.2.8"
+    "reflux": "^0.2.8",
+    "winston": "^1.0.1"
   }
 }
