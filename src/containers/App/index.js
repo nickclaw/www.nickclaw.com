@@ -14,11 +14,11 @@ export class App extends Component {
 
   render() {
     return (
-      <section>
+      <main>
         <Header />
         {this.props.children}
         <Footer />
-      </section>
+      </main>
     );
   }
 }
