@@ -7,8 +7,8 @@ export class Footer extends Component {
 
   render() {
     return (
-      <footer className={`${styles}`}>
-        
+      <footer className={styles}>
+
       </footer>
     );
   }

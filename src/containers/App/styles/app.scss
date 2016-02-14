@@ -3,19 +3,18 @@
 @import 'fonts/roboto';
 @import 'typography';
 @import 'links';
+@import '~normalize.css/normalize';
 
 :global(body) {
-  position: relative;
-
-  h1 {
-    margin-top: 80px;
+  * {
+    margin: 0;
+    padding: 0;
+    position: relative;
   }
 
-  h2 {
-    margin-bottom: 20px;
-  }
-
-  img {
+  .container {
+    max-width: 800px;
     width: 100%;
+    margin: 0 auto;
   }
 }

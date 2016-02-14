@@ -1,33 +1,20 @@
 :local(.styles) {
-  position: fixed;
-  z-index: 1;
 
-  width: 100%;
-
-  padding: 20px 0;
-  opacity: 1;
-
-  background: rgba(0, 0, 0, .8);
-
-  a, a:hover {
-    color: #FFF;
-  }
-
-  .logo {
+  .banner {
+    display: flex;
+    flex-direction: row;
+    background: #538CCC;
+    padding: 10px;
 
     a {
-      font-weight: bold;
+      color: white;
+      padding: 10px;
     }
-  }
-  
-  nav {
 
-    a {
-      margin-right: 20px;
-      
-      &.active {
-        font-weight: bold;
-      }
+    a.active {
+      background: white;
+      color: #538CCC;
+      text-decoration: none;
     }
   }
 }

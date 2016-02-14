@@ -1,13 +1,28 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
-/* containers */
+/* root level */
 import { App } from 'containers/App';
 import { Home } from 'containers/Home';
+import { Contact } from 'containers/Contact';
+import { Error } from 'containers/Error';
+
+/* work */
+import { Work } from 'containers/Work'
+import { Azuqua } from 'containers/Work/Azuqua';
+import { Disney } from 'containers/Work/Disney';
+import { Biology } from 'containers/Work/Biology';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="home" component={Home} />
-    <Route status={404} path="*" component={Home} />
+    <IndexRoute component={Home} />
+    <Route path="contact" component={Contact} />
+    <Route path="work">
+      <IndexRoute component={Work} />
+      <Route path="azuqua" component={Azuqua} />
+      <Route path="disney" component={Disney} />
+      <Route path="biology" component={Biology} />
+    </Route>
+    <Route path="*" component={Error} status={404} />
   </Route>
 );
