@@ -1,12 +1,13 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-
 import App from './layouts/App';
 import Home from './layouts/Home';
+import About from './layouts/About';
+import Work from './layouts/Work';
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={Home} />
-    <Route path="*" component={Home} />
-  </Route>
+  <App>
+    <Home />
+    <About />
+    <Work />
+  </App>
 );

@@ -1,15 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import serve from 'serve-static';
-import compress from 'compression';
+import serve from 'connect-gzip-static';
 import noSniff from 'dont-sniff-mimetype';
 import frameguard from 'frameguard';
 import csp from 'helmet-csp';
 import uuid from 'node-uuid';
 import path from 'path';
-
-import client from '../client/server';
+import renderPage from '../client/server';
 
 const app = express();
 
@@ -45,11 +43,11 @@ app.use(csp({
       'https://www.google-analytics.com',
       'https://images.unsplash.com',
     ],
-    formAction: [],      // no forms
-    frameAncestors: [],  // no frames
-    childSrc: [],        // no embedding
-    objectSrc: [],       // no plugins
-    mediaSrc: [],        // no media
+    formAction: ["'none'"],      // no forms
+    frameAncestors: ["'none'"],  // no frames
+    childSrc: ["'none'"],        // no embedding
+    objectSrc: ["'none'"],       // no plugins
+    mediaSrc: ["'none'"],        // no media
     reportUri: '/health/report',
   },
 }));
@@ -61,9 +59,8 @@ app.use((req, res, next) => {
 });
 
 // serve static files
-app.use('/static', serve(__dirname + '/../../build/static'));
+app.use('/', serve(__dirname + '/../../build/assets'));
 app.use('/static', (req, res) => res.sendStatus(404));
-app.use('/', serve(__dirname + '/../../src/static'));
 
 // dynamic stuff
 app.use(morgan('dev'));
@@ -77,7 +74,10 @@ app.use((req, res, next) => {
   res.set('Cache-Control', 'public, max-age=3600'); // one day
   next();
 });
-app.use(client);
+
+app.get('/', renderPage);
+
+app.use((req, res) => res.redirect('/'));
 
 
 app.listen(8000, err => {

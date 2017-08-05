@@ -1,6 +1,2 @@
-User-agent: 007
-Allow: /shaken
-Disallow: /stirred
-
 User-agent: *
 Allow:

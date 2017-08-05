@@ -1,4 +1,63 @@
 .home {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  overflow: auto;
+  padding: 200px 0 75px 0;
+
+  background-color: rgb(234, 234, 234);
+  animation: home-fog 10s infinite linear;
+  background-size: 128px 128px;
+  background-image: url(./tile.jpeg);
+
+  h1 {
+    color: rgba(0,0,0,.6);
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__links {
+    color: rgba(0,0,0,.4);
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin: 0 0 0 0;
+    text-align: center;
+
+    a {
+      color: rgba(0,0,0,.6);
+      cursor: pointer;
+
+      &:hover:after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        left: 0;
+        bottom: 0.3rem;
+        background: rgba(0,0,0,.5);
+      }
+    }
+  }
+
+  &__fog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(./background.jpg);
+    background-size: cover;
+    background-position: top center;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,1));
+  }
+}
+
+@keyframes home-fog {
+  from {
+    background-position: 0px 0px;
+  }
+
+  to {
+    background-position: 0px 128px;
+  }
 }

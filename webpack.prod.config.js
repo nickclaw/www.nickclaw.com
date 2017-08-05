@@ -1,58 +1,65 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: {
-    'main': './src/client/client.js',
-  },
+  entry: __dirname + '/src/client/client.js',
+
   output: {
-    path: './build/static/',
-    filename: '[name]-[hash].js',
+    path: __dirname + '/build/assets/static/',
+    filename: '[name].[hash].js',
+    publicPath: '/static/',
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', ['css', 'postcss', 'sass'], { allChunks: true }),
+        use: ExtractTextPlugin.extract([
+          'css-loader',
+          {
+            'loader': 'postcss-loader',
+            options: { plugins: loader => ([
+              autoprefixer({ browsers: ['last 2 versions'] })
+            ])}
+          },
+          'sass-loader'
+        ]),
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
+        loader: 'babel-loader',
       },
       {
-        test: /\.svg$/,
-        loader: 'text'
+        test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        loader: 'file-loader',
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file-loader',
+          'image-webpack-loader'
+        ],
+      }
     ],
   },
 
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify('production'),
-      "process.env.SITE_URL": JSON.stringify('https://www.topsecret.io'),
-      "typeof window": JSON.stringify("object"),
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin(),
 
-    new ExtractTextPlugin("styles-[contentHash].css"),
+    new webpack.optimize.UglifyJsPlugin({}),
+
+    new CompressionPlugin(),
+
+    new ExtractTextPlugin("[name].[hash].css"),
     new AssetsPlugin({
       filename: 'assets.json',
       prettyPrint: true,
     }),
-  ],
-
-
-  //
-  // Configs
-  //
-
-  postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] })
   ]
 }

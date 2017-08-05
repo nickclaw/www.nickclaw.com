@@ -4,32 +4,44 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: {
-    'main': './src/client/client.js',
-  },
+  entry: __dirname + '/src/client/client.js',
+
   output: {
-    path: './build/static/',
+    path: __dirname + '/build/assets/static/',
     filename: '[name].js',
+    publicPath: '/static/',
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', ['css', 'postcss', 'sass'], { allChunks: true }),
+        use: ExtractTextPlugin.extract([
+          'css-loader',
+          {
+            'loader': 'postcss-loader',
+            options: { plugins: loader => ([
+              autoprefixer({ browsers: ['last 2 versions'] })
+            ])}
+          },
+          'sass-loader'
+        ]),
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
-      },
-      {
-        test: /\.svg$/,
-        loader: 'text',
+        loader: 'babel-loader',
       },
       {
         test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        loader: 'file',
+        loader: 'file-loader',
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file-loader',
+          'image-webpack-loader'
+        ],
       }
     ],
   },
@@ -37,22 +49,12 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify('development'),
-      "process.env.SITE_URL": JSON.stringify('http://localhost:8080'),
     }),
 
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin("[name].css"),
     new AssetsPlugin({
       filename: 'assets.json',
       prettyPrint: true,
     }),
-  ],
-
-
-  //
-  // Configs
-  //
-
-  postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] })
   ]
 }

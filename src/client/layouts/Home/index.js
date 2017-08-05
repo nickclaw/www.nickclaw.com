@@ -1,21 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import './style.scss';
 
-@connect()
 export default class Home extends React.Component {
   render() {
-    const style = {
-      backgroundImage: 'url(/waves.jpg)',
-      backgroundSize: 'cover',
-      backgroundPosition: '43% 10%',
-    };
-
     return (
-      <section className="home" style={style}>
+      <section className="home">
+        <div className="home__fog" />
+        <h1>
+          <a href="#">nickclaw</a>
+        </h1>
 
+        <div className="home__links">
+          <a href="#about">
+            about
+          </a>
+          /
+          <a href="#work">
+            work
+          </a>
+          /
+          <a href="https://github.com/nickclaw">
+            github
+          </a>
+        </div>
       </section>
     );
   }
