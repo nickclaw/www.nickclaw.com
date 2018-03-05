@@ -21,6 +21,10 @@ export default class Home extends React.Component {
             work
           </a>
           /
+          <a href="/resume.pdf" download={true}>
+            resume
+          </a>
+          /
           <a href="https://github.com/nickclaw">
             github
           </a>
