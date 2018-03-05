@@ -37,7 +37,7 @@
 
 .work-item {
   max-width: 700px;
-  padding: 30px 50px;
+  padding: 15px 50px;
   margin: 0 auto;
 
   &__header {
@@ -73,6 +73,7 @@
     max-width: 700px;
     text-indent: 1rem;
     margin: 10px 0;
+    line-height: 1.5rem;
 
     &:first-of-type:first-letter {
       font-size: 120%;
