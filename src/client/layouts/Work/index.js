@@ -22,10 +22,6 @@ export default class Work extends React.Component {
           <p>
             Currently working at Facebook as a front end engineer.
           </p>
-
-          <div className="work-item__tags">
-            <a>todo</a>
-          </div>
         </div>
 
         <div className="work-item">

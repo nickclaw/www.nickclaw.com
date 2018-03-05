@@ -59,7 +59,7 @@ export default class About extends React.Component {
         </p>
 
         <p>
-          I'm currently living in Seattle Washington and working for Azuqua as a software engineer.
+          I'm currently living in Seattle Washington and working for Facebook as a front end engineer.
           Check out <a href="https://github.com/nickclaw">Github</a> to see what I'm working on.
         </p>
       </section>
