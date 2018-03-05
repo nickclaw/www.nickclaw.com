@@ -13,16 +13,31 @@ export default class Work extends React.Component {
 
         <div className="work-item">
           <div className="work-item__header">
-            <h3>Azuqua</h3>
+            <h3>Facebook</h3>
             <label>
-              2015 -
+              2018 -
             </label>
           </div>
 
           <p>
-            Currently working as a software engineer at Azuqua, expanding and improving our awesome single page app.
-            Doing everything from designing and creating brand new features to identifying and fixing security
-            issues across our many microservices. Played a major role in the complete rewrite of our platform.
+            Currently working at Facebook as a front end engineer.
+          </p>
+
+          <div className="work-item__tags">
+            <a>todo</a>
+          </div>
+        </div>
+
+        <div className="work-item">
+          <div className="work-item__header">
+            <h3>Azuqua</h3>
+            <label>
+              2015 - 2018
+            </label>
+          </div>
+
+          <p>
+            Worked full time as a software engineer for Azuqua, playing a major role in the rewrite and continuous development of the platform. Worked primarily on the main single page app, but also participated in the the design and implementation of brand new features across microservices. Used security scanning tools to identify issues and coordinate solutions.
           </p>
 
           <div className="work-item__tags">
@@ -30,6 +45,8 @@ export default class Work extends React.Component {
             <a>react</a>
             <a>redux</a>
             <a>webpack</a>
+            <a>redis</a>
+            <a>burp suite</a>
           </div>
         </div>
 
@@ -42,10 +59,7 @@ export default class Work extends React.Component {
           </div>
 
           <p>
-            Interned for 6 months on an internal development team at Disney. Redesigned and reimplemented
-            the homepage widget toolset to be extendable and customizable for a variety of scenarios.
-            Worked on rebuilding core the of the content management system used by Disney owned companies like
-            ESPN and ABC.
+            Interned for 6 months on an internal development team. Designed and implemented a framework for interactive "widgets" that made data visualization and management easier. Worked on rebuilding the core UI of the content management system used by Disney owned companies like ESPN and ABC.
           </p>
 
           <div className="work-item__tags">
@@ -65,9 +79,7 @@ export default class Work extends React.Component {
           </div>
 
           <p>
-            Created and maintained a content management system used by the Department of Biology
-            at the University of Washington. Enabled professors to customize and create content
-            for their course websites. Used by daily by dozens of classes and thousands of students.
+            Created and maintained a content management system that enabled professors to customize and create content for their course websites. Used daily by dozens of classes and thousands of students during it's lifespan.
           </p>
 
           <div className="work-item__tags">
